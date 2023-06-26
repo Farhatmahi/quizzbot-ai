@@ -79,8 +79,8 @@ const page = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-[100vh]">
-      <div className="text-center w-1/3">
+    <div className="flex flex-col justify-center items-center min-h-screen">
+      <div className="text-center w-[90%] lg:w-1/3">
         <h1 className="text-2xl">Let's create your Ai-Quizzbot account!</h1>
         <p className="text-lg mt-2 text-gray-500 mb-10">
           Already have an account?{" "}
@@ -117,8 +117,8 @@ const page = () => {
           handleChange={handleChange}
           error={errors.password}
         />
-        <div className="flex justify-start items-start my-10">
-        <input
+        <div className="flex justify-start items-start my-4 sm:my-6">
+          <input
             type="checkbox"
             id="rememberMe"
             className="form-checkbox h-4 w-4 text-indigo-600"
