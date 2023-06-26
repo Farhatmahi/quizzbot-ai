@@ -10,7 +10,7 @@ const Home = () => {
   const pathname = usePathname();
   console.log(pathname);
   let prompt;
-  if (pathname === "/true-false") {
+  if (pathname === "/generate-questions/true-false") {
     prompt = "This is True false Prompt";
   } else if (pathname === "/generate-questions/multiple-questions") {
     prompt = "This is Multiple Question Prompt";
