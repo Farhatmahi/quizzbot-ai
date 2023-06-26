@@ -46,7 +46,7 @@ const Sidebar = () => {
     },
   ];
   return (
-    <div className="sticky top-20 z-50">
+    <div className="sticky top-10 z-50">
       <div className=" mt-5">
         <div className="">
           <div className="">
@@ -56,8 +56,8 @@ const Sidebar = () => {
                 alt="logo"
                 width={150}
                 height={150}
-                className="mb-8 "
-              ></Image>
+                className="mb-10"
+              />
             </Link>
           </div>
           <div className="mt-5">
@@ -134,7 +134,7 @@ const Sidebar = () => {
               })}
             </div>
             <div>
-              <h2 className=" font-bold mb-5 mt-16  ">Account Settings</h2>
+              <h2 className=" font-bold mb-5 mt-16  ">Account</h2>
               {AccountSettings.map((item) => {
                 return (
                   <Link

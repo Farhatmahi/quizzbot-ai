@@ -32,13 +32,22 @@ const Output = () => {
       <div className="flex justify-between">
         <span className="text-lg font-bold">Generated Questions</span>
         <div className="space-x-2">
-          <button className="px-3 py-3 bg-gradient-color-62 text-white rounded">
+          <button
+            className="px-3 py-3 text-white rounded  bg-gradient-to-b from-[#FC495F] from-62% via-[#FFc371] to-[#FF0000] to-38% 
+       bg-size-200 bg-pos-0"
+          >
             <AiOutlineFileWord className="text-2xl" />
           </button>
-          <button className="px-3 py-3 bg-gradient-color-62 text-white rounded">
+          <button
+            className="px-3 py-3 text-white rounded  bg-gradient-to-b from-[#FC495F] from-62% via-[#FFc371] to-[#FF0000] to-38% 
+       bg-size-200 bg-pos-0"
+          >
             <AiOutlineFileText className="text-2xl" />
           </button>
-          <button className="px-3 py-3 bg-gradient-color-62 text-white rounded">
+          <button
+            className="px-3 py-3 text-white rounded  bg-gradient-to-b from-[#FC495F] from-62% via-[#FFc371] to-[#FF0000] to-38% 
+       bg-size-200 bg-pos-0"
+          >
             <MdContentCopy className="text-2xl" />
           </button>
         </div>
@@ -54,7 +63,10 @@ const Output = () => {
             placeholder="Save generated question as"
           />
         </div>
-        <button className="px-3 py-3 bg-gradient-color-62 text-white rounded">
+        <button
+          className="px-3 py-3 text-white rounded  bg-gradient-to-b from-[#FC495F] from-62% via-[#FFc371] to-[#FF0000] to-38% 
+       bg-size-200 bg-pos-50"
+        >
           <AiOutlineSave className="text-2xl" />
         </button>
       </div>
