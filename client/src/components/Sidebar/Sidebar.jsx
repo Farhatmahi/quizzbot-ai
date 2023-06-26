@@ -41,8 +41,8 @@ const Sidebar = () => {
     },
     {
       id: 3,
-      name: "Account Setting",
-      link: "/accountSetting",
+      name: "Account Settings",
+      link: "/account-settings",
     },
   ];
   return (
@@ -99,30 +99,10 @@ const Sidebar = () => {
                     ) : (
                       <></>
                     )}
-                    {header.name === "About" ? (
-                      <>
-                        <div className="flex items-center gap-3 justify-center font-normal">
-                          <BsReverseLayoutSidebarReverse className="text-[20px]"></BsReverseLayoutSidebarReverse>{" "}
-                          {header.name}
-                        </div>
-                      </>
-                    ) : (
-                      <></>
-                    )}
                     {header.name === "Saved Questions" ? (
                       <>
                         <div className="flex items-center gap-3 justify-center font-normal">
                           <BsSave className="text-[20px]"></BsSave>{" "}
-                          {header.name}
-                        </div>
-                      </>
-                    ) : (
-                      <></>
-                    )}
-                    {header.name === "Contact" ? (
-                      <>
-                        <div className="flex items-center gap-3 justify-center font-normal">
-                          <FaRegCommentDots className="text-[20px]"></FaRegCommentDots>{" "}
                           {header.name}
                         </div>
                       </>
@@ -166,7 +146,7 @@ const Sidebar = () => {
                     ) : (
                       <></>
                     )}
-                    {item.name === "Account Setting" ? (
+                    {item.name === "Account Settings" ? (
                       <>
                         <div className="flex items-center gap-3 justify-center font-normal">
                           <IoSettingsOutline className="text-[20px]"></IoSettingsOutline>

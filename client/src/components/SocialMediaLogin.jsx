@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "@/context/AuthProvider";
 import { useRouter } from "next/navigation";
 
-const SocialMediaLogin = () => {
+const SocialMediaLogin = ({ children }) => {
   const { signInWithGoogle } = useContext(AuthContext);
   const router = useRouter();
   const handleGoogleLogin = () => {
@@ -22,7 +22,7 @@ const SocialMediaLogin = () => {
         onClick={handleGoogleLogin}
       >
         <FcGoogle className="mr-3 text-xl" />
-        Sign In with Google
+        {children}
       </button>
     </div>
   );
