@@ -14,7 +14,7 @@ const RememberMe = () => {
         </label>
       </div>
       <div>
-        <Link href="/" className="text-sm text-[#FC495F]">
+        <Link href="/" className="text-sm text-[#FC495F] hover:underline">
           Forgot Password?
         </Link>
       </div>

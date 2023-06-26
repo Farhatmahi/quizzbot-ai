@@ -4,8 +4,8 @@ import SocialMediaLogin from "@/components/SocialMediaLogin";
 
 export default function Home() {
   return (
-   <main className="flex min-h-screen">
-      <div className="flex flex-col justify-center items-center p-8 bg-white w-full lg:w-1/2 lg:px-20">
+    <main className="flex min-h-screen">
+      <div className="flex flex-col justify-center items-center p-8 bg-white w-full lg:w-1/2 lg:px-24">
         <div className="flex justify-start w-full mb-10">
           <img src="./assets/logo.png" alt="" className="w-48" />
         </div>
