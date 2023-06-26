@@ -11,7 +11,7 @@ export default function Home() {
         </div>
         <LoginForm />
       </div>
-      <div className="bg-gradient-to-tr from-[#FC495F] from-62%  to-[#FFC371] to-38% w-1/2">
+      <div className="bg-gradient-to-tr from-[#FC495F] from-62%  to-[#FFC371] to-38% w-1/2 lg:block hidden md:hidden">
         <div className="flex flex-col justify-center items-center text-white h-screen">
           <h1 className="text-4xl">Welcome to Quizzbot</h1>
           <p>Ignite Your Mind with QuizBot AI</p>

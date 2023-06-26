@@ -59,7 +59,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <div className="text-black w-full mb-10">
         <h1 className="font-bold text-3xl mb-2">Login</h1>
       </div>
