@@ -39,13 +39,16 @@ and needs to be scaled down or updated. */
 async function databaseConnection() {
   try {
     await mongoose.connect(config.database_string as string)
-    successLogger.info('Database connected successfully')
+    // successLogger.info('Database connected successfully')\
+    console.log('Database connected successfully')
 
     server = app.listen(config.port, () => {
-      successLogger.info(`Server is listening on port ${config.port}`)
+      // successLogger.info(`Server is listening on port ${config.port}`)
+      console.log(`Server is listening on port ${config.port}`)
     })
   } catch (error) {
-    errorLogger.error('Error while connecting database: ', error)
+    // errorLogger.error('Error while connecting database: ', error)
+    console.log('Error while connecting database', error)
   }
 }
 
