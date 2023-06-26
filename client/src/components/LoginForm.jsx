@@ -62,9 +62,8 @@ const LoginForm = () => {
     <div className="w-full ">
       <div className="text-black w-full mb-10">
         <h1 className="font-bold text-3xl mb-2">Login</h1>
-        <p className="text-gray-500">Ignite Your Mind with QuizBot AI</p>
       </div>
-      <SocialMediaLogin />
+      <SocialMediaLogin>Sign in with Google</SocialMediaLogin>
       <Divider />
       <EmailInput
         email={data.email}

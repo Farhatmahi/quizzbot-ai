@@ -10,6 +10,7 @@ import { LuLogOut } from "react-icons/lu";
 import { FiHome } from "react-icons/fi";
 import { BsReverseLayoutSidebarReverse, BsSave } from "react-icons/bs";
 import { AiOutlineGift, AiOutlineFileText } from "react-icons/ai";
+import { IoSettingsOutline } from "react-icons/io5";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -38,9 +39,14 @@ const Sidebar = () => {
       name: "Transaction",
       link: "/transaction",
     },
+    {
+      id: 3,
+      name: "Account Settings",
+      link: "/account-settings",
+    },
   ];
   return (
-    <div className="sticky top-20 z-50">
+    <div className="sticky top-10 z-50">
       <div className=" mt-5">
         <div className="">
           <div className="">
@@ -50,12 +56,19 @@ const Sidebar = () => {
                 alt="logo"
                 width={150}
                 height={150}
-                className="mb-8 "
-              ></Image>
+                className="mb-10"
+              />
             </Link>
           </div>
           <div className="mt-5">
-            <Link href="/dashboard">
+            <Link
+              href="/dashboard"
+              className={` ${
+                pathname === "/dashboard"
+                  ? ` bg-transparent bg-clip-text font-semibold  text-[#FC495F] `
+                  : ""
+              }`}
+            >
               <div className="flex items-center gap-2  font-normal">
                 <RxDashboard className="text-[20px]"></RxDashboard>
                 <span>Dashboard</span>
@@ -86,30 +99,10 @@ const Sidebar = () => {
                     ) : (
                       <></>
                     )}
-                    {header.name === "About" ? (
-                      <>
-                        <div className="flex items-center gap-3 justify-center font-normal">
-                          <BsReverseLayoutSidebarReverse className="text-[20px]"></BsReverseLayoutSidebarReverse>{" "}
-                          {header.name}
-                        </div>
-                      </>
-                    ) : (
-                      <></>
-                    )}
                     {header.name === "Saved Questions" ? (
                       <>
                         <div className="flex items-center gap-3 justify-center font-normal">
                           <BsSave className="text-[20px]"></BsSave>{" "}
-                          {header.name}
-                        </div>
-                      </>
-                    ) : (
-                      <></>
-                    )}
-                    {header.name === "Contact" ? (
-                      <>
-                        <div className="flex items-center gap-3 justify-center font-normal">
-                          <FaRegCommentDots className="text-[20px]"></FaRegCommentDots>{" "}
                           {header.name}
                         </div>
                       </>
@@ -121,7 +114,7 @@ const Sidebar = () => {
               })}
             </div>
             <div>
-              <h2 className=" font-bold mb-5 mt-16  ">Account Settings</h2>
+              <h2 className=" font-bold mb-5 mt-16  ">Account</h2>
               {AccountSettings.map((item) => {
                 return (
                   <Link
@@ -147,6 +140,16 @@ const Sidebar = () => {
                       <>
                         <div className="flex items-center gap-3 justify-center font-normal">
                           <AiOutlineFileText className="text-[20px]"></AiOutlineFileText>{" "}
+                          {item.name}
+                        </div>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                    {item.name === "Account Settings" ? (
+                      <>
+                        <div className="flex items-center gap-3 justify-center font-normal">
+                          <IoSettingsOutline className="text-[20px]"></IoSettingsOutline>
                           {item.name}
                         </div>
                       </>

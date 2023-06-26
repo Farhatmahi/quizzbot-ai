@@ -88,7 +88,7 @@ const page = () => {
             Login
           </a>
         </p>
-        <SocialMediaLogin />
+        <SocialMediaLogin>Sign up with Google</SocialMediaLogin>
         <Divider />
         <div className="mb-2 lg:mb-6 w-full flex flex-col items-start">
           <label htmlFor="name" className="block text-gray-700 text-sm mb-2">
@@ -97,7 +97,7 @@ const page = () => {
           <input
             type="text"
             name="fullName"
-            className="border border-[#eee] rounded-2xl w-full p-2 pl-4 placeholder:text-xs text-black"
+            className="border-2 border-[#eee] rounded-2xl w-full p-2 pl-4 placeholder:text-xs text-black"
             placeholder="Your name"
             value={data.fullName}
             onChange={handleChange}
@@ -139,7 +139,7 @@ const page = () => {
             <LoaderSpinner /> Signing in
           </PrimaryButton>
         ) : (
-          <PrimaryButton funq={handleSignUp}>Sign In</PrimaryButton>
+          <PrimaryButton funq={handleSignUp}>Sign Up</PrimaryButton>
         )}
       </div>
     </div>

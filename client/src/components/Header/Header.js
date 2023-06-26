@@ -5,7 +5,7 @@ import image from "../../../public/pervez hossain.jpg";
 const Header = () => {
   return (
     <div>
-      <div className="flex justify-end items-center gap-8 py-2 z-0 relative">
+      <div className="flex justify-end items-center gap-8 pt-4 py-2 z-0 relative">
         <h2>Welcome, Pervez Hossain</h2>
         <Image
           src={image}
