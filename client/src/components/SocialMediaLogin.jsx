@@ -16,15 +16,15 @@ const SocialMediaLogin = () => {
   };
 
   return (
-    <div className="w-full">
-      <button
-        className=" lg:mb-6 outline flex justify-center  items-center outline-btn-outline text-[#000000] px-16 py-2 mb-2  w-full rounded-2xl"
-        onClick={handleGoogleLogin}
-      >
-        <FcGoogle className="mr-3 text-xl" />
+    <button
+      className="flex items-center justify-center px-4 py-2 space-x-2 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-full"
+      onClick={handleGoogleLogin}
+    >
+      <FcGoogle className="mr-3 text-xl" />
+      <span className="text-sm font-medium text-gray-700">
         Sign In with Google
-      </button>
-    </div>
+      </span>
+    </button>
   );
 };
 
