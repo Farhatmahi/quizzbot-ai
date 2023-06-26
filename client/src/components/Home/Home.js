@@ -10,20 +10,30 @@ const Home = () => {
   const pathname = usePathname();
   console.log(pathname);
   let prompt;
-  if (pathname === "/true-false") {
+  if (pathname === "/generate-questions/true-false") {
     prompt = "This is True false Prompt";
-  } else if (pathname === "/multiple-questions") {
+  } else if (pathname === "/generate-questions/multiple-questions") {
     prompt = "This is Multiple Question Prompt";
-  } else if (pathname === "/blanks") {
+  } else if (pathname === "/generate-questions/blanks") {
     prompt = "This is Multiple Question Prompt";
-  } else if (pathname === "/short-answers") {
+  } else if (pathname === "/generate-questions/short-answers") {
     prompt = "This is Short Answer Prompt";
-  } else if (pathname === "/matching") {
+  } else if (pathname === "/generate-questions/matching") {
     prompt = "This is Matching Prompt";
-  } else if (pathname === "/calculations") {
+  } else if (pathname === "/generate-questions/calculations") {
     prompt = "This is Calculation Prompt";
-  } else if (pathname === "/teacher-tool") {
+  } else if (pathname === "/generate-questions/teacher-tool") {
     prompt = "This is Teacher-tool Prompt";
+  } else if (pathname === "/generate-questions/teacher-tool/lesson-planer") {
+    prompt = "This is Lesson planer Prompt";
+  } else if (pathname === "/generate-questions/teacher-tool/project-ideas") {
+    prompt = "This is Project Ideas Prompt";
+  } else if (pathname === "/generate-questions/teacher-tool/group-creator") {
+    prompt = "This is Group Creator Prompt";
+  } else if (pathname === "/generate-questions/teacher-tool/seating-chart") {
+    prompt = "This is Group Creator Prompt";
+  } else if (pathname === "/generate-questions/teacher-tool/study-points") {
+    prompt = "This is study Points Prompt";
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -104,7 +114,7 @@ const Home = () => {
               name="versionCount"
               options={numberOfVersions}
             ></DropdownOptions>
-            <PrimaryButton disabled>Generate Output</PrimaryButton>
+            <PrimaryButton classNamemb="mb-3">Generate Output</PrimaryButton>
           </div>
         </form>
         <div className="rounded-lg mr-8 col-span-2">
