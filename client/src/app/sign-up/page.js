@@ -88,7 +88,7 @@ const page = () => {
             Login
           </a>
         </p>
-        <SocialMediaLogin />
+        <SocialMediaLogin>Sign up with Google</SocialMediaLogin>
         <Divider />
         <div className="mb-2 lg:mb-6 w-full flex flex-col items-start">
           <label htmlFor="name" className="block text-gray-700 text-sm mb-2">
@@ -118,7 +118,7 @@ const page = () => {
           error={errors.password}
         />
         <div className="flex justify-start items-start my-10">
-          <input
+        <input
             type="checkbox"
             id="rememberMe"
             className="form-checkbox h-4 w-4 text-indigo-600"
@@ -139,7 +139,7 @@ const page = () => {
             <LoaderSpinner /> Signing in
           </PrimaryButton>
         ) : (
-          <PrimaryButton funq={handleSignUp}>Sign In</PrimaryButton>
+          <PrimaryButton funq={handleSignUp}>Sign Up</PrimaryButton>
         )}
       </div>
     </div>

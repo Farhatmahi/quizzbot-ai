@@ -26,7 +26,7 @@ const LoginForm = () => {
   const [loginError, setLoginError] = useState("");
 
   const handleChange = (e) => {
-    setLoginError('')
+    setLoginError("");
     const { name, value } = e.target;
     setData((prevState) => ({
       ...prevState,
@@ -62,9 +62,8 @@ const LoginForm = () => {
     <div className="w-full">
       <div className="text-black w-full mb-10">
         <h1 className="font-bold text-3xl mb-2">Login</h1>
-        <p className="text-gray-500">Ignite Your Mind with QuizBot AI</p>
       </div>
-      <SocialMediaLogin />
+      <SocialMediaLogin>Sign in with Google</SocialMediaLogin>
       <Divider />
       <EmailInput
         email={data.email}
@@ -76,7 +75,9 @@ const LoginForm = () => {
         handleChange={handleChange}
         error={errors.password}
       />
-      {loginError && <div className="my-3 text-sm text-red-500">{loginError}</div>}
+      {loginError && (
+        <div className="my-3 text-sm text-red-500">{loginError}</div>
+      )}
       <RememberMe />
       {loading ? (
         <PrimaryButton loading={loading}>
@@ -85,8 +86,6 @@ const LoginForm = () => {
       ) : (
         <PrimaryButton funq={handleSignIn}>Log In</PrimaryButton>
       )}
-
-      
 
       <p className="text-sm text-black mt-6 ">
         New here?{" "}
