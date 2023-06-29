@@ -2,8 +2,20 @@
 import { IoDocumentsOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useState } from "react";
+import { ImCross } from "react-icons/im";
 
 const SavedQuestionTable = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   const router = useRouter();
   const handleClick = () => {
     router.push("/home");
@@ -72,10 +84,75 @@ const SavedQuestionTable = () => {
                       <td class="px-4 py-4 text-sm text-gray-900  whitespace-nowrap">
                         c++
                       </td>
-                      <td class="px-4 py-4 text-sm text-gray-900  whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm text-gray-900">
                         <p className="ml-8">
-                          Each kilogram of pulp can produce 1000/100 = 10 no...
+                          <button onClick={openModal}>
+                            Each kilogram of pulp can produce 1000/100 = 10
+                            no...
+                          </button>
                         </p>
+                        {/* Modal details here */}
+                        {modalOpen && (
+                          <div className="fixed inset-0 flex items-center justify-center z-50  ">
+                            <div className="modal-overlay fixed inset-0 bg-gray-500 opacity-75"></div>
+                            <div
+                              className="modal-container bg-white w-1/2 h-3/4 mx-auto rounded-2xl shadow-lg
+                               z-50 overflow-y-auto"
+                            >
+                              <div className="modal-content py-6  text-left px-6">
+                                <div className="flex justify-between items-center pb-3">
+                                  <h3 className="text-2xl font-bold mt-3">C++</h3>
+
+                                  <button
+                                    className="modal-close  w-10 h-10 font-bold cursor-pointer"
+                                    onClick={closeModal}
+                                  >
+                                    <ImCross className="w-4 h-4 text-red-700" />
+                                  </button>
+                                </div>
+                                <div>
+                                  <p className="-indent-0 text-justify text-base mt-6">
+                                    <p className="text-wrap">
+                                      1. Is artificial intelligence the ability
+                                      of a digital computer or computer
+                                      controlled robot to perform tasks commonly
+                                      associated with intelligent beings?
+                                      True/False
+                                    </p>{" "}
+                                    <p>
+                                      2. Was the development of the digital
+                                      computer in the 1940s? True/False
+                                    </p>{" "}
+                                    <p>
+                                      {" "}
+                                      3. Are there any programs that can match
+                                      human flexibility over wider domains or in
+                                      tasks requiring much everyday knowledge?
+                                      True/False
+                                    </p>{" "}
+                                    <p>
+                                      4. Are some programs able to attain the
+                                      performance levels of human experts and
+                                      professionals in performing certain
+                                      specific tasks? True/False
+                                    </p>{" "}
+                                    <p>
+                                      {" "}
+                                      5. Does artificial intelligence have
+                                      applications in medical diagnosis,
+                                      computer search engines, and voice or
+                                      handwriting recognition? True/False
+                                    </p>
+                                  </p>
+                                  <p className="text-base mt-4 text-justify text-wrap">
+                                    <b>Answer</b> : <p>1. True</p> <p>2.True</p>{" "}
+                                    <p>3. False</p> <p>4. True </p> 5. True
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
                       </td>
                       <td class="px-4 py-4 text-sm whitespace-nowrap">
                         <div class="flex items-center gap-x-2">
