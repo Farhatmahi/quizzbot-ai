@@ -1,18 +1,35 @@
+import React, { useContext } from "react";
+import { FaBars } from "react-icons/fa";
+import pervezHossainImage from "../../../public/pervez hossain.jpg";
 import Image from "next/image";
-import React from "react";
-import image from "../../../public/pervez hossain.jpg";
+import { AuthContext } from "@/context/AuthProvider";
 
-const Header = () => {
+const Header = ({ open, setOpen }) => {
+  const user = useContext(AuthContext);
+
+  console.log(user?.user?.photoURL);
+
   return (
-    <div>
+    <div className="flex items-center justify-between">
+      <button
+        className={`${
+          open ? "transition-all duration-700" : "ml-8"
+        } bg-gradient-to-r from-[#FC495F] to-[#FFc371] w-9 h-9 rounded-full lg:flex md:flex items-center justify-center cursor-pointer transition-all duration-700 hidden`}
+        onClick={() => setOpen(!open)}
+      >
+        <FaBars className="text-white text-lg hover:text-black" />
+      </button>
       <div className="flex justify-end items-center gap-8 pt-4 py-2 z-0 relative">
-        <h2>Welcome, Pervez Hossain</h2>
-        <Image
-          src={image}
-          width={50}
-          height={50}
-          className="rounded-full bg-gradient-to-r from-[#FC495F] from-62% to-[#FFc371] to-38% p-1"
-        />
+        {user && <h2>{user?.user?.displayName}</h2>}
+        <div className="rounded-full bg-gradient-to-r from-[#FC495F] to-[#FFc371] p-1">
+          <Image
+            src={pervezHossainImage}
+            alt={user?.user?.displayName}
+            width={50}
+            height={50}
+            className="rounded-full"
+          />
+        </div>
       </div>
     </div>
   );
