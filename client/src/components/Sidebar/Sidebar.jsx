@@ -46,124 +46,115 @@ const Sidebar = () => {
     },
   ];
   return (
-    <div className="sticky top-10 z-50">
-      <div className=" mt-5">
-        <div className="">
-          <div className="">
-            <Link href="/">
-              <Image
-                src={logo}
-                alt="logo"
-                width={150}
-                height={150}
-                className="mb-10"
-              />
-            </Link>
-          </div>
-          <div className="mt-5">
-            <Link
-              href="/dashboard"
-              className={` ${
-                pathname === "/dashboard"
-                  ? ` bg-transparent bg-clip-text font-semibold  text-[#FC495F] `
-                  : ""
-              }`}
-            >
-              <div className="flex items-center gap-2  font-normal">
-                <RxDashboard className="text-[20px]"></RxDashboard>
-                <span>Dashboard</span>
-              </div>
-            </Link>
-          </div>
-          <div className="flex flex-col justify-between ">
-            <div>
-              <h2 className=" font-bold mt-10 mb-5  ">Ai Content</h2>
-              {header?.map((header) => {
-                return (
-                  <Link
-                    href={`${header.link} `}
-                    className={` ${
-                      pathname === header.link
-                        ? ` bg-transparent bg-clip-text font-semibold  text-[#FC495F] `
-                        : ""
-                    } flex items-center gap-3 mb-5 `}
-                    key={header.id}
-                  >
-                    {header.name === "Generate Questions" ? (
-                      <>
-                        <div className="flex items-center gap-3 justify-center font-normal">
-                          <FiHome className="text-[20px]"></FiHome>{" "}
-                          <span>{header.name}</span>
-                        </div>
-                      </>
-                    ) : (
-                      <></>
-                    )}
-                    {header.name === "Saved Questions" ? (
-                      <>
-                        <div className="flex items-center gap-3 justify-center font-normal">
-                          <BsSave className="text-[20px]"></BsSave>{" "}
-                          {header.name}
-                        </div>
-                      </>
-                    ) : (
-                      <></>
-                    )}
-                  </Link>
-                );
-              })}
-            </div>
-            <div>
-              <h2 className=" font-bold mb-5 mt-16  ">Account</h2>
-              {AccountSettings.map((item) => {
-                return (
-                  <Link
-                    href={`${item.link} `}
-                    className={` ${
-                      pathname === item.link
-                        ? `  font-semibold  text-[#FC495F] `
-                        : ""
-                    } flex items-center gap-3 mb-5 `}
-                    key={item.id}
-                  >
-                    {item.name === "Membership" ? (
-                      <>
-                        <div className="flex items-center gap-3 justify-center font-normal">
-                          <AiOutlineGift className="text-[20px]"></AiOutlineGift>{" "}
-                          {item.name}
-                        </div>
-                      </>
-                    ) : (
-                      <></>
-                    )}
-                    {item.name === "Transaction" ? (
-                      <>
-                        <div className="flex items-center gap-3 justify-center font-normal">
-                          <AiOutlineFileText className="text-[20px]"></AiOutlineFileText>{" "}
-                          {item.name}
-                        </div>
-                      </>
-                    ) : (
-                      <></>
-                    )}
-                    {item.name === "Account Settings" ? (
-                      <>
-                        <div className="flex items-center gap-3 justify-center font-normal">
-                          <IoSettingsOutline className="text-[20px]"></IoSettingsOutline>
-                          {item.name}
-                        </div>
-                      </>
-                    ) : (
-                      <></>
-                    )}
-                  </Link>
-                );
-              })}
-              <div className="flex items-center gap-3 cursor-pointer">
-                <LuLogOut className="text-[20px] "></LuLogOut>{" "}
-                <span className="font-normal">Logout</span>
-              </div>
-            </div>
+    <div className="mt-5 sticky top-10">
+      <Link href="/">
+        <Image
+          src={logo}
+          alt="logo"
+          width={150}
+          height={150}
+          className="mb-10"
+        />
+      </Link>
+      <Link
+        href="/dashboard"
+        className={` ${
+          pathname === "/dashboard"
+            ? ` bg-transparent bg-clip-text font-semibold text-[#FC495F] mt-5`
+            : ""
+        }`}
+      >
+        <div className="flex items-center gap-2  font-normal">
+          <RxDashboard className="text-[20px]"></RxDashboard>
+          <span>Dashboard</span>
+        </div>
+      </Link>
+      <div className="flex flex-col justify-between ">
+        <div>
+          <h2 className=" font-bold mt-10 mb-5  ">Ai Content</h2>
+          {header?.map((header) => {
+            return (
+              <Link
+                href={`${header.link} `}
+                className={` ${
+                  pathname === header.link
+                    ? ` bg-transparent bg-clip-text font-semibold  text-[#FC495F] `
+                    : ""
+                } flex items-center gap-3 mb-5 `}
+                key={header.id}
+              >
+                {header.name === "Generate Questions" ? (
+                  <>
+                    <div className="flex items-center gap-3 justify-center font-normal">
+                      <FiHome className="text-[20px]"></FiHome>{" "}
+                      <span>{header.name}</span>
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {header.name === "Saved Questions" ? (
+                  <>
+                    <div className="flex items-center gap-3 justify-center font-normal">
+                      <BsSave className="text-[20px]"></BsSave> {header.name}
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </Link>
+            );
+          })}
+        </div>
+        <div>
+          <h2 className=" font-bold mb-5 mt-16  ">Account</h2>
+          {AccountSettings.map((item) => {
+            return (
+              <Link
+                href={`${item.link} `}
+                className={` ${
+                  pathname === item.link
+                    ? `  font-semibold  text-[#FC495F] `
+                    : ""
+                } flex items-center gap-3 mb-5 `}
+                key={item.id}
+              >
+                {item.name === "Membership" ? (
+                  <>
+                    <div className="flex items-center gap-3 justify-center font-normal">
+                      <AiOutlineGift className="text-[20px]"></AiOutlineGift>{" "}
+                      {item.name}
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {item.name === "Transaction" ? (
+                  <>
+                    <div className="flex items-center gap-3 justify-center font-normal">
+                      <AiOutlineFileText className="text-[20px]"></AiOutlineFileText>{" "}
+                      {item.name}
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {item.name === "Account Settings" ? (
+                  <>
+                    <div className="flex items-center gap-3 justify-center font-normal">
+                      <IoSettingsOutline className="text-[20px]"></IoSettingsOutline>
+                      {item.name}
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </Link>
+            );
+          })}
+          <div className="flex items-center gap-3 cursor-pointer">
+            <LuLogOut className="text-[20px] "></LuLogOut>{" "}
+            <span className="font-normal">Logout</span>
           </div>
         </div>
       </div>

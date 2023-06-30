@@ -4,7 +4,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 
 const TopCards = () => {
   return (
-    <div className="grid lg:grid-cols-4 gap-24 p-4 ">
+    <div className="grid lg:grid-cols-4 lg:gap-24 gap-8 p-4 ">
       <div
         className="lg:col-span-2 col-span-1 bg-white flex justify-between items-center w-full border p-4 rounded-lg 
       "
