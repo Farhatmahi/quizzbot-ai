@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
       <body className={varela_round.className}>
         <div>
           <AuthProvider>
-            {pathname !== "/sign-up" && pathname !== "/" ? (
+            {pathname !== "/sign-up" && pathname !== "/" && pathname !== "/home" ? (
               <>
                 <div className={`${open ? "grid grid-cols-5 gap-8" : null} `}>
                   {open ? (

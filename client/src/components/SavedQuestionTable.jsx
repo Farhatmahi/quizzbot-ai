@@ -101,7 +101,9 @@ const SavedQuestionTable = () => {
                             >
                               <div className="modal-content py-6  text-left px-6">
                                 <div className="flex justify-between items-center pb-3">
-                                  <h3 className="text-2xl font-bold mt-3">C++</h3>
+                                  <h3 className="text-2xl font-bold mt-3">
+                                    C++
+                                  </h3>
 
                                   <button
                                     className="modal-close  w-10 h-10 font-bold cursor-pointer"
