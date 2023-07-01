@@ -1,8 +1,8 @@
 "use client";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../../public/logo.png";
 import { FaRegCommentDots } from "react-icons/fa";
 import { RxDashboard } from "react-icons/rx";
@@ -11,8 +11,18 @@ import { FiHome } from "react-icons/fi";
 import { BsReverseLayoutSidebarReverse, BsSave } from "react-icons/bs";
 import { AiOutlineGift, AiOutlineFileText } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
+import { AuthContext } from "@/context/AuthProvider";
 
 const Sidebar = () => {
+  const { logOut } = useContext(AuthContext);
+  const router = useRouter();
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        router.push("/login");
+      })
+      .catch((e) => console.log(e));
+  };
   const pathname = usePathname();
   console.log(pathname);
   const header = [
@@ -154,7 +164,9 @@ const Sidebar = () => {
           })}
           <div className="flex items-center gap-3 cursor-pointer">
             <LuLogOut className="text-[20px] "></LuLogOut>{" "}
-            <span className="font-normal">Logout</span>
+            <span onClick={handleLogout} className="font-normal">
+              Logout
+            </span>
           </div>
         </div>
       </div>

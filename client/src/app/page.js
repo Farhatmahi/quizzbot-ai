@@ -1,11 +1,12 @@
-"use client"
+"use client";
 import HomeHeader from "@/components/HomePgae/HomeHeader";
+import AuthProvider from "@/context/AuthProvider";
 
 const page = () => {
   return (
-    <div>
+    <>
       <HomeHeader />
-    </div>
+    </>
   );
 };
 

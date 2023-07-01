@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   const [open, setOpen] = useState(true);
 
   const pathname = usePathname();
-  const excludePaths = ["/login", "/register"];
+  const excludePaths = [ "/register"];
   const shouldExclude = excludePaths.some((path) => pathname === path);
 
   if (shouldExclude) {
@@ -30,7 +30,9 @@ export default function RootLayout({ children }) {
       <body className={varela_round.className}>
         <div>
           <AuthProvider>
-            {pathname !== "/sign-up" && pathname !== "/" && pathname !== "/home" ? (
+            {pathname !== "/login" &&
+            pathname !== "/sign-up" &&
+            pathname !== "/" ? (
               <>
                 <div className={`${open ? "grid grid-cols-5 gap-8" : null} `}>
                   {open ? (
