@@ -6,9 +6,9 @@ import Image from "next/image";
 
 const HomeHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, userLogout } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const handleLogout = () => {
-    userLogout()
+    logOut()
       .then(() => {})
       .catch((e) => console.log(e));
   };
@@ -92,26 +92,23 @@ const HomeHeader = () => {
             </ul>
           </div>
           <ul class="flex items-center hidden space-x-8 lg:flex lg:ml-24">
-            {/* {user?.uid ? ( */}
-            <>
-              {/* <li onClick={handleLogout}>
+            {user?.uid ? (
+              <>
+                <li onClick={handleLogout}>
                   <Link
                     href="/login"
-                    className="inline-flex items-center 
-                justify-center h-12 px-8 font-bold tracking-wide
-                 text-white transition duration-200 rounded-full shadow-md
-                  bg-gradient-to-r from-[#38A1BB] from-14.72% via-[#38A1BB] via-77.9% to-[#604DBC] to-84.87% ...
-                  hover:bg-white-100 focus:shadow-outline focus:outline-none"
-                    aria-label="Sign up"
-                    title="Sign up"
+                    className="h-12 px-8 font-bold tracking-wide
+                  btn btn-primary text-white  transition-all w-full py-3 rounded-2xl
+       duration-500 bg-gradient-to-r from-[#FC495F] from-62% via-[#FFc371] to-[#FF0000] to-38% 
+       bg-size-200 bg-pos-0 hover:bg-pos-100 flex justify-center items-center gap-3"
                   >
                     Logout
                   </Link>
-                </li> */}
-            </>
-            {/* ) : (
-              <> */}
-            {/* <li>
+                </li>
+              </>
+            ) : (
+              <>
+                {/* <li>
               <Link
                 href="/login"
                 aria-label="Sign in"
@@ -121,21 +118,21 @@ const HomeHeader = () => {
                 Login{" "}
               </Link>
             </li> */}
-            <li>
-              <Link
-                href="/login"
-                class=" 
+                <li>
+                  <Link
+                    href="/login"
+                    class=" 
                  h-12 px-8 font-bold tracking-wide
                   btn btn-primary text-white  transition-all w-full py-3 rounded-2xl
        duration-500 bg-gradient-to-r from-[#FC495F] from-62% via-[#FFc371] to-[#FF0000] to-38% 
        bg-size-200 bg-pos-0 hover:bg-pos-100 flex justify-center items-center gap-3"
-                aria-label="Sign up"
-              >
-                Log In
-              </Link>
-            </li>
-            {/* </>
-            )} */}
+                    aria-label="Sign up"
+                  >
+                    Log In
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
           <div class="lg:hidden">
             <button
