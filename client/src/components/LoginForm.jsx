@@ -1,7 +1,7 @@
 "use client";
 import RememberMe from "@/components/RememberMe";
 import PrimaryButton from "@/components/PrimaryButton";
-import { AuthContext } from "@/context/AuthProvider";
+
 import { useContext, useState } from "react";
 import LoaderSpinner from "./Loader/LoaderSpinner";
 import Divider from "./Divider";
@@ -10,6 +10,7 @@ import EmailInput from "./Shared/EmailInput";
 import PasswordInput from "./Shared/PasswordInput";
 import { validateForm } from "@/utils/validateForm";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "@/context/AuthProvider";
 
 const LoginForm = () => {
   const { login } = useContext(AuthContext);
