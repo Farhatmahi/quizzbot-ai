@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   const [open, setOpen] = useState(true);
 
   const pathname = usePathname();
-  const excludePaths = [ "/register"];
+  const excludePaths = ["/register"];
   const shouldExclude = excludePaths.some((path) => pathname === path);
 
   if (shouldExclude) {

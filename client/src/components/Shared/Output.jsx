@@ -27,7 +27,7 @@ const Output = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mb-5">
       {/* First Row */}
       <div className="flex justify-between">
         <span className="text-lg font-bold">Generated Questions</span>
