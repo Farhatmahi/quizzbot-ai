@@ -23,7 +23,7 @@ const HomeMiddle = () => {
           <button
             class="inline-flex items-center 
                 justify-center ml-3 mb-12  mt-6 h-[46px] w-[220px] px-6 font-medium tracking-wide
-                 text-white transition rounded-2xl
+                 text-white  rounded-2xl transition-all
        duration-500 bg-gradient-to-r from-[#FC495F] from-62% via-[#FFc371] to-[#FF0000] to-38% 
        bg-size-200 bg-pos-0 hover:bg-pos-100"
             aria-label="Sign up"

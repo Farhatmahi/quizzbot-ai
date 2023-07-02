@@ -32,7 +32,7 @@ const HomeHeader = () => {
     };
   }, []);
   return (
-    <div class="  w-full fixed z-10">
+    <div class="w-full fixed z-10">
       <div
         className={`px-4 md:px-16 py-6 flex flex-row items-center transition duration-500 ${
           showBackground ? "bg-[#eee] bg-opacity-90" : ""
