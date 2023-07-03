@@ -84,7 +84,7 @@ const page = () => {
         <h1 className="text-2xl">Let's create your Ai-Quizzbot account!</h1>
         <p className="text-lg mt-2 text-gray-500 mb-10">
           Already have an account?{" "}
-          <a href="/" className="text-[#FC495F]">
+          <a href="/login" className="text-[#FC495F]">
             Login
           </a>
         </p>
