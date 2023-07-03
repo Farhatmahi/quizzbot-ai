@@ -1,8 +1,8 @@
 import LoginForm from "@/components/LoginForm";
 
-export default function Home() {
+const page = () => {
   return (
-    <main className="flex min-h-screen">
+    <div className="flex min-h-screen">
       <div className="flex flex-col justify-center items-center p-8 bg-white w-full lg:w-1/2 lg:px-24">
         <div className="flex justify-start w-full mb-10">
           <img src="./assets/logo.png" alt="" className="w-48" />
@@ -16,6 +16,8 @@ export default function Home() {
           <img src="/assets/140shots_so.png" alt="" />
         </div>
       </div>
-    </main>
+    </div>
   );
-}
+};
+
+export default page;
