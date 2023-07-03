@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Login = () => {
   return (
-    <main className="flex min-h-screen">
+    <div className="flex min-h-screen">
       <div className="flex flex-col justify-center items-center p-8 bg-white w-full lg:w-1/2 lg:px-24">
         <div className="flex justify-start w-full mb-10">
           <Link href="/">
@@ -19,7 +19,7 @@ const Login = () => {
           <img src="/assets/140shots_so.png" alt="" />
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

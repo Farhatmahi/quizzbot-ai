@@ -1,5 +1,6 @@
 import { Configuration, OpenAIApi } from 'openai'
 import config from '../../../config'
+import ApiError from '../../../errors/ApiError'
 
 const generateText = async (prompt: string) => {
   const configuration = new Configuration({
@@ -19,6 +20,10 @@ const generateText = async (prompt: string) => {
   })
 
   const generatedText = generatedTextResponse.data.choices?.[0].text || ''
+
+  if(!generatedText){
+    throw new ApiError(400, "Failed to generate response")
+  }
 
   //   const questionsRegex = /\d+\.\s*(.*?), True\/False/g
   //   const questions: string[] = []
