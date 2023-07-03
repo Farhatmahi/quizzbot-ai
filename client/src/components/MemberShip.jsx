@@ -2,7 +2,7 @@ import PrimaryButton from "./PrimaryButton";
 
 const MemberShip = () => {
   return (
-    <div className="  border-2 border-[#EEE] rounded-xl mt-5 py-5 mr-8 px-10">
+    <div className="  border-2 border-[#EEE] rounded-xl mt-5 py-5 mr-8 px-10 min-h-screen">
       <h1 className="text-center font-bold text-3xl">Membership</h1>
       <h2 className=" text-xl mb-2">Current Plan</h2>
 
