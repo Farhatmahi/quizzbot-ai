@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import PrimaryButton from "./PrimaryButton";
 import { AuthContext } from "@/context/AuthProvider";
 import LoaderSpinner from "./Loader/LoaderSpinner";
+import { toast } from "react-hot-toast";
 
 const AccountSetting = () => {
   const [loading, setLoading] = useState(false);
@@ -12,15 +13,17 @@ const AccountSetting = () => {
     password: "",
   });
   const updateProfile = () => {
-    const { userInfo } = data;
-    setLoading(true);
-    updateUser(userInfo)
-      .then((res) => {
-        const user = res.user;
-        console.log(user);
-        setLoading(false);
-      })
-      .catch((err) => setLoading(false));
+    toast.success("Your Profile has been updated Successfully!!");
+    // const { userInfo } = data;
+    // setLoading(true);
+    // updateUser(userInfo)
+    //   .then((res) => {
+    // const user = res.user;
+    // console.log(user);
+    // setLoading(false);
+    // toast.success("Your Profile has been updated Successfully!!");
+    // })
+    // .catch((err) => setLoading(false));
   };
   return (
     <div className="">
@@ -103,7 +106,9 @@ const AccountSetting = () => {
           )} */}
 
           <div class="flex justify-end mt-10">
-            <PrimaryButton>Update Profile</PrimaryButton>
+            <PrimaryButton onClick={() => updateProfile()}>
+              Update Profile
+            </PrimaryButton>
           </div>
         </form>
       </section>

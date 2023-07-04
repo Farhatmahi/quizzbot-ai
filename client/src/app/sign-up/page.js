@@ -10,6 +10,7 @@ import { AuthContext } from "@/context/AuthProvider";
 import { validateForm } from "@/utils/validateForm";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
+import { toast } from "react-hot-toast";
 
 const page = () => {
   const { createUser, updateUser } = useContext(AuthContext);
@@ -58,6 +59,7 @@ const page = () => {
             .then((result) => {
               setLoading(false);
               router.push("/dashboard");
+              toast.success("Congratulation!! Your Registration is successfull")
             })
             .catch((err) => {
               console.log("Error updating name");

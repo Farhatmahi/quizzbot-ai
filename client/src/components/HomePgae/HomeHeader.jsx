@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import logo from "../../../public/assets/logo.png";
 import Image from "next/image";
+import { toast } from "react-hot-toast";
 
 const TOP_OFFSET = 66;
 const HomeHeader = () => {
@@ -10,7 +11,9 @@ const HomeHeader = () => {
   const { user, logOut } = useContext(AuthContext);
   const handleLogout = () => {
     logOut()
-      .then(() => {})
+      .then(() => {
+        toast.success("Log Out Successfully")
+      })
       .catch((e) => console.log(e));
   };
   const [showBackground, setShowBackground] = useState(false);

@@ -12,6 +12,7 @@ import { BsReverseLayoutSidebarReverse, BsSave } from "react-icons/bs";
 import { AiOutlineGift, AiOutlineFileText } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
 import { AuthContext } from "@/context/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Sidebar = () => {
   const { logOut } = useContext(AuthContext);
@@ -20,6 +21,7 @@ const Sidebar = () => {
     logOut()
       .then(() => {
         router.push("/login");
+        toast.success("Logout Successfully!!")
       })
       .catch((e) => console.log(e));
   };

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const ChoosePlan = () => {
   return (
     <div>
@@ -153,15 +155,17 @@ const ChoosePlan = () => {
                   <span class="mx-4 text-gray-700 ">5 exclusive widgets</span>
                 </div>
               </div>
-
-              <button
-                class="w-full px-4 py-2 mt-10 font-medium tracking-wide btn btn-primary
+              <Link href="/transaction">
+                {" "}
+                <button
+                  class="w-full px-4 py-2 mt-10 font-medium tracking-wide btn btn-primary
                text-white capitalize transition-all  transform rounded-2xl
                 duration-500 bg-gradient-to-r from-[#FC495F] from-62% via-[#FFc371] to-[#FF0000] to-38%
                 bg-size-200 bg-pos-0 hover:bg-pos-100 "
-              >
-                Choose Basic
-              </button>
+                >
+                  Choose Basic
+                </button>
+              </Link>
             </div>
 
             <div
@@ -279,15 +283,17 @@ const ChoosePlan = () => {
                     </span>
                   </div>
                 </div>
-
-                <button
-                  class="w-full px-4 py-2 mt-10 font-medium tracking-wide btn btn-primary
+                <Link href="/transaction">
+                  {" "}
+                  <button
+                    class="w-full px-4 py-2 mt-10 font-medium tracking-wide btn btn-primary
                text-white capitalize transition-all  transform rounded-2xl
                 duration-500 bg-gradient-to-r from-[#FC495F] from-62% via-[#FFc371] to-[#FF0000] to-38%
                 bg-size-200 bg-pos-0 hover:bg-pos-100 "
-                >
-                  Choose Pro
-                </button>
+                  >
+                    Choose Pro
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
