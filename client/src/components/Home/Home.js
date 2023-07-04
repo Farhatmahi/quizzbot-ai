@@ -1,15 +1,19 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import PrimaryButton from "../PrimaryButton";
 import Output from "../Shared/Output";
 
 import DropdownOptions from "./DropdownOptions/DropdownOptions";
 import { usePathname } from "next/navigation";
+import axios from "axios";
 
 const Home = () => {
+  const [generatedResponse, setGeneratedResponse] = useState(null);
+
   const pathname = usePathname();
-  console.log(pathname);
-  let prompt;
+  const pathParts = pathname.split("/"); // Split the pathname by '/'
+  const format = pathParts[pathParts.length - 1];
+
   if (pathname === "/generate-questions/true-false") {
     prompt = "This is True false Prompt";
   } else if (pathname === "/generate-questions/multiple-questions") {
@@ -43,23 +47,41 @@ const Home = () => {
     const language = form.language.value;
     const difficulty = form.difficulty.value;
     const versionCount = form.versionCount.value;
-    const data = {
-      questionCount,
-      content,
-      language,
-      difficulty,
-      versionCount,
-      prompt,
-    };
-    console.log(data);
+
+    const prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
+
+"""${content}"""
+
+The response will be like this
+
+1. {Question will be here}, True/False
+2. {Question will be here}, True/False
+3. {Question will be here}, True/False
+... So on   
+
+Answer : 
+1. True
+2. False
+... So on`;
+
+    const data = { prompt };
+
+    axios
+      .post("http://localhost:4000/api/v1/generate", data)
+      .then((res) => {
+        console.log(res.data.data);
+        setGeneratedResponse(res.data.data);
+      })
+      .catch((err) => console.log(err.message));
+
     form.reset();
   };
   const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const languageOptions = [
-    "Arabic",
+    "English",
     "Chinese",
     "Danish",
-    "English",
+    "Arabic",
     "French",
     "German",
     "Hebrew",
@@ -118,7 +140,7 @@ const Home = () => {
           </div>
         </form>
         <div className="rounded-lg mr-8 col-span-2">
-          <Output />
+          <Output generatedResponse={generatedResponse} />
         </div>
       </div>
     </div>
