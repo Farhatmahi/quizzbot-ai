@@ -6,6 +6,7 @@ import Output from "../Shared/Output";
 import DropdownOptions from "./DropdownOptions/DropdownOptions";
 import { usePathname } from "next/navigation";
 import axios from "axios";
+import { generatePrompt } from "@/utils/PromptGenerations";
 
 const Home = () => {
   const [generatedResponse, setGeneratedResponse] = useState(null);
@@ -13,6 +14,7 @@ const Home = () => {
   const pathname = usePathname();
   const pathParts = pathname.split("/"); // Split the pathname by '/'
   const format = pathParts[pathParts.length - 1];
+  console.log(format);
 
   if (pathname === "/generate-questions/true-false") {
     prompt = "This is True false Prompt";
@@ -48,21 +50,13 @@ const Home = () => {
     const difficulty = form.difficulty.value;
     const versionCount = form.versionCount.value;
 
-    const prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
-
-"""${content}"""
-
-The response will be like this
-
-1. {Question will be here}, True/False
-2. {Question will be here}, True/False
-3. {Question will be here}, True/False
-... So on   
-
-Answer : 
-1. True
-2. False
-... So on`;
+    const prompt = generatePrompt({
+      format,
+      questionCount,
+      content,
+      language,
+      difficulty,
+    });
 
     const data = { prompt };
 
