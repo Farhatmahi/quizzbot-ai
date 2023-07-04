@@ -11,6 +11,7 @@ import PasswordInput from "./Shared/PasswordInput";
 import { validateForm } from "@/utils/validateForm";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/context/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const LoginForm = () => {
   const { login } = useContext(AuthContext);
@@ -48,6 +49,7 @@ const LoginForm = () => {
           const user = res.user;
           setLoading(false);
           router.push("/dashboard");
+          toast.success("Login has been Successfull!!")
         })
         .catch((err) => {
           console.log(err);

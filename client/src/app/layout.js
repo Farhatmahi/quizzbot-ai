@@ -10,6 +10,7 @@ import Footer from "@/components/Shared/Footer";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Options from "@/components/Options/Options";
 import { useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 const varela_round = Varela_Round({
   subsets: ["latin"],
@@ -76,6 +77,7 @@ export default function RootLayout({ children }) {
               <>{children}</>
             )}
             <Footer />
+            <Toaster />
           </AuthProvider>
         </div>
       </body>

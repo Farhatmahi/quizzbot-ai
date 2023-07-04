@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
+import { toast } from "react-hot-toast";
 
 const SavedQuestionTable = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -21,7 +22,7 @@ const SavedQuestionTable = () => {
     router.push("/home");
   };
   const handleDelete = () => {
-    window.alert("This row data has been deleted!");
+    toast.success("This row data has been deleted!");
   };
   return (
     <div>
