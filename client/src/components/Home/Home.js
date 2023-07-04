@@ -1,15 +1,21 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import PrimaryButton from "../PrimaryButton";
 import Output from "../Shared/Output";
 
 import DropdownOptions from "./DropdownOptions/DropdownOptions";
 import { usePathname } from "next/navigation";
+import axios from "axios";
+import { generatePrompt } from "@/utils/PromptGenerations";
 
 const Home = () => {
+  const [generatedResponse, setGeneratedResponse] = useState(null);
+
   const pathname = usePathname();
-  console.log(pathname);
-  let prompt;
+  const pathParts = pathname.split("/"); // Split the pathname by '/'
+  const format = pathParts[pathParts.length - 1];
+  console.log(format);
+
   if (pathname === "/generate-questions/true-false") {
     prompt = "This is True false Prompt";
   } else if (pathname === "/generate-questions/multiple-questions") {
@@ -43,23 +49,33 @@ const Home = () => {
     const language = form.language.value;
     const difficulty = form.difficulty.value;
     const versionCount = form.versionCount.value;
-    const data = {
+
+    const prompt = generatePrompt({
+      format,
       questionCount,
       content,
       language,
       difficulty,
-      versionCount,
-      prompt,
-    };
-    console.log(data);
+    });
+
+    const data = { prompt };
+
+    axios
+      .post("http://localhost:4000/api/v1/generate", data)
+      .then((res) => {
+        console.log(res.data.data);
+        setGeneratedResponse(res.data.data);
+      })
+      .catch((err) => console.log(err.message));
+
     form.reset();
   };
   const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const languageOptions = [
-    "Arabic",
+    "English",
     "Chinese",
     "Danish",
-    "English",
+    "Arabic",
     "French",
     "German",
     "Hebrew",
@@ -118,7 +134,7 @@ const Home = () => {
           </div>
         </form>
         <div className="rounded-lg mr-8 col-span-2">
-          <Output />
+          <Output generatedResponse={generatedResponse} />
         </div>
       </div>
     </div>

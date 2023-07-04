@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { AiOutlineFileWord, AiOutlineFileText } from "react-icons/ai";
 import { MdContentCopy } from "react-icons/md";
 import { AiOutlineSave } from "react-icons/ai";
-import { EditorState } from "draft-js";
+import { ContentState, EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "../../app/customEditorClassName.css";
 
@@ -15,12 +15,29 @@ const DynamicEditor = dynamic(
   }
 );
 
-const Output = () => {
+const Output = ({ generatedResponse }) => {
   const [editorState, setEditorState] = useState(null);
 
+  // useEffect(() => {
+  //   setEditorState(EditorState.createEmpty());
+  // }, []);
+
+  // const onEditorStateChange = (newEditorState) => {
+  //   setEditorState(newEditorState);
+  // };
+
   useEffect(() => {
-    setEditorState(EditorState.createEmpty());
-  }, []);
+    if (generatedResponse) {
+      // Convert the generated response to a ContentState
+      const contentState = ContentState.createFromText(generatedResponse);
+
+      // Set the initial editor state with the generated response
+      setEditorState(EditorState.createWithContent(contentState));
+    } else {
+      // If no generated response is available, create an empty editor state
+      setEditorState(EditorState.createEmpty());
+    }
+  }, [generatedResponse]);
 
   const onEditorStateChange = (newEditorState) => {
     setEditorState(newEditorState);

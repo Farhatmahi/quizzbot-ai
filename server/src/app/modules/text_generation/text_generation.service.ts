@@ -21,8 +21,8 @@ const generateText = async (prompt: string) => {
 
   const generatedText = generatedTextResponse.data.choices?.[0].text || ''
 
-  if(!generatedText){
-    throw new ApiError(400, "Failed to generate response")
+  if (!generatedText) {
+    throw new ApiError(400, 'Failed to generate response')
   }
 
   //   const questionsRegex = /\d+\.\s*(.*?), True\/False/g
