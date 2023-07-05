@@ -68,7 +68,7 @@ const Home = () => {
       })
       .catch((err) => console.log(err.message));
 
-    form.reset();
+    // form.reset();
   };
   const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const languageOptions = [
