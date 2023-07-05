@@ -16,8 +16,6 @@ export const generateText = catchAsync(
       message: 'Generated text successfully',
       data: result,
     })
-
-    next()
   }
 )
 

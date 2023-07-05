@@ -25,13 +25,6 @@ const generateText = async (prompt: string) => {
     throw new ApiError(400, 'Failed to generate response')
   }
 
-  //   const questionsRegex = /\d+\.\s*(.*?), True\/False/g
-  //   const questions: string[] = []
-  //   let match
-  //   while ((match = questionsRegex.exec(generatedText))) {
-  //     questions.push(match[1])
-  //   }
-
   //   // Create a new text generation document
   //   const textGeneration = new TextGeneration({
   //     prompt: prompt,
