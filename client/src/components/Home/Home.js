@@ -44,7 +44,14 @@ const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const questionCount = form.questionCount.value;
+    let questionCount;
+    let level;
+    if (format !== "lesson-planer") {
+      questionCount = form.questionCount.value;
+    }
+    if (format === "lesson-planer") {
+      level = form.level.value;
+    }
     const content = form.content.value;
     const language = form.language.value;
     const difficulty = form.difficulty.value;
@@ -55,6 +62,7 @@ const Home = () => {
       questionCount,
       content,
       language,
+      level,
       difficulty,
     });
 
@@ -91,6 +99,13 @@ const Home = () => {
     "Turkish",
     "Vietnamese",
   ];
+  const levelOptions = [
+    "Nursery",
+    "Elementary School",
+    "Middle School",
+    "High School",
+    "University",
+  ];
   const difficulty = ["Easy", "Average", "Above Average", "Difficult"];
   const numberOfVersions = [1, 2, 3];
   return (
@@ -98,11 +113,13 @@ const Home = () => {
       <div className="grid md:grid-cols-3 gap-16 mt-10">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="col-span-1">
-            <DropdownOptions
-              label="How Many Question?"
-              name="questionCount"
-              options={options}
-            ></DropdownOptions>
+            {format === "lesson-planer" ? null : (
+              <DropdownOptions
+                label="How Many Question?"
+                name="questionCount"
+                options={options}
+              ></DropdownOptions>
+            )}
             {/* <TextInput label="How Many Question?" name="questionCount" /> */}
             <div className="flex flex-col mb-4">
               <label htmlFor="" className=" text-sm">
@@ -115,6 +132,13 @@ const Home = () => {
                 required
               ></textarea>
             </div>
+            {format === "lesson-planer" ? (
+              <DropdownOptions
+                label="Level ?"
+                name="level"
+                options={levelOptions}
+              ></DropdownOptions>
+            ) : null}
             <DropdownOptions
               label="Language ?"
               name="language"
