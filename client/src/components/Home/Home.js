@@ -17,7 +17,6 @@ const Home = () => {
   const pathname = usePathname();
   const pathParts = pathname.split("/"); // Split the pathname by '/'
   const format = pathParts[pathParts.length - 1];
-  console.log(format);
 
   if (pathname === "/generate-questions/true-false") {
     prompt = "This is True false Prompt";
@@ -69,8 +68,6 @@ const Home = () => {
     const difficulty = form.difficulty.value;
     const versionCount = form.versionCount.value;
 
-    console.log(questionCount, level);
-
     const prompt = generatePrompt({
       format,
       questionCount,
@@ -81,11 +78,9 @@ const Home = () => {
     });
 
     const data = { prompt };
-    console.log(data);
     axios
       .post("http://localhost:4000/api/v1/generate", data)
       .then((res) => {
-        console.log(res.data.data);
         setGeneratedResponse(res.data.data);
         setLoading(false);
         toast.success("Generate successfull");

@@ -153,7 +153,6 @@ export const generatePrompt = ({
       break;
 
     default:
-      console.log(`Handle unknown format here`);
       break;
   }
 

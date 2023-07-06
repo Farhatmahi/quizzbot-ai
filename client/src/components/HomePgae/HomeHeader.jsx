@@ -12,15 +12,14 @@ const HomeHeader = () => {
   const handleLogout = () => {
     logOut()
       .then(() => {
-        toast.success("Log Out Successfully")
+        toast.success("Log Out Successfully");
       })
-      .catch((e) => console.log(e));
+      .catch((e) => toast.error(e.message));
   };
   const [showBackground, setShowBackground] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log(window.scrollY);
       if (window.scrollY >= TOP_OFFSET) {
         setShowBackground(true);
       } else {
