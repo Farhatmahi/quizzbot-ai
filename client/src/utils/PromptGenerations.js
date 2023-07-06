@@ -8,16 +8,13 @@ export const generatePrompt = ({
   level,
   difficulty,
 }) => {
-  let prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
-    
-        """${content}"""
-        `;
-
-  let lessonPlaner = `${content}`;
+  let prompt = ``;
 
   switch (format) {
     case "true-false":
-      prompt += `The response will be like this ${format} and answer
+      prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
+    
+      """${content}""" The response will be like this ${format} and answer
     
       1. {Question will be here}
       a) Option 1
@@ -38,7 +35,9 @@ export const generatePrompt = ({
       break;
 
     case "multiple-questions":
-      prompt += `The response will be like this ${format} and answer
+      prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
+    
+      """${content}""" The response will be like this ${format} and answer
       
       1. {Question will be here}
         a) Option 1
@@ -64,7 +63,9 @@ export const generatePrompt = ({
       break;
 
     case "short-answers":
-      prompt += `The response will be like this ${format} and answer
+      prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
+    
+      """${content}""" The response will be like this ${format} and answer
     
       1. {Question will be here},
       2. {Question will be here},
@@ -82,7 +83,9 @@ export const generatePrompt = ({
       break;
 
     case "blanks":
-      prompt += `The fill-in-the-blank sentence is: "${content} ______."
+      prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
+    
+      """${content}""" The fill-in-the-blank sentence is: "${content} ______."
 
       Answer response like this format
       
@@ -96,13 +99,15 @@ export const generatePrompt = ({
       break;
 
     case "lesson-planer":
-      lessonPlaner += `In this text create lesson plan`;
+      prompt = `"""${content}""" from the above text wrapped with """ Give me a lesson plan with the level of ${level} in ${language} on ${difficulty}`;
       break;
 
     case "project-ideas":
+      prompt = `"""${content}""" from the above text wrapped with """ Give me a project plan with the level of ${level} in ${language} on ${difficulty}`;
       break;
 
     case "study-points":
+      prompt = `"""${content}""" from the above text wrapped with """ Give me a project plan with the level of ${level} in ${language} on ${difficulty}`;
       break;
 
     case "group-creator":
@@ -116,5 +121,5 @@ export const generatePrompt = ({
       break;
   }
 
-  return lessonPlaner;
+  return prompt;
 };

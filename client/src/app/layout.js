@@ -77,7 +77,7 @@ export default function RootLayout({ children }) {
               <>{children}</>
             )}
             <Footer />
-            <Toaster />
+            <Toaster position="bottom-center" reverseOrder={false} />
           </AuthProvider>
         </div>
       </body>
