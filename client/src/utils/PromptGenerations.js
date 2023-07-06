@@ -5,6 +5,7 @@ export const generatePrompt = ({
   questionCount,
   content,
   language,
+  level,
   difficulty,
 }) => {
   let prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
