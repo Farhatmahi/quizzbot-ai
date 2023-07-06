@@ -6,9 +6,7 @@ import { AuthContext } from "@/context/AuthProvider";
 
 const Header = ({ open, setOpen }) => {
   const user = useContext(AuthContext);
-
-  console.log(user?.user?.photoURL);
-
+  console.log(user);
   return (
     <div className="flex items-center justify-between">
       <button
@@ -22,13 +20,25 @@ const Header = ({ open, setOpen }) => {
       <div className="flex justify-end items-center gap-8 pt-4 py-2 z-0 relative">
         {user && <h2>{user?.user?.displayName}</h2>}
         <div className="rounded-full bg-gradient-to-r from-[#FC495F] to-[#FFc371] p-1">
-          <Image
-            src={pervezHossainImage}
-            alt={user?.user?.displayName}
-            width={50}
-            height={50}
-            className="rounded-full"
-          />
+          {user?.user?.photoURL === null ? (
+            <Image
+              src={
+                "https://img.uxwing.com/wp-content/themes/uxwing/download/peoples-avatars-thoughts/corporate-user-icon.png"
+              }
+              alt="Avater Image"
+              width={50}
+              height={50}
+              className="rounded-full"
+            ></Image>
+          ) : (
+            <Image
+              src={user?.user?.photoURL}
+              alt={user?.user?.displayName}
+              width={50}
+              height={50}
+              className="rounded-full"
+            />
+          )}
         </div>
       </div>
     </div>

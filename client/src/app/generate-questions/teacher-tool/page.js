@@ -25,18 +25,19 @@ const page = () => {
       prompt: "This is Study Points Prompt",
       link: `/generate-questions/teacher-tool/study-points`,
     },
-    {
-      id: 4,
-      option: "Group Creator",
-      prompt: "This is Group Creator Prompt",
-      link: `/generate-questions/teacher-tool/group-creator`,
-    },
-    {
-      id: 5,
-      option: "Seating Chart",
-      prompt: "This is Group Creator Prompt",
-      link: `/generate-questions/teacher-tool/seating-chart`,
-    },
+
+    // {
+    //   id: 4,
+    //   option: "Group Creator",
+    //   prompt: "This is Group Creator Prompt",
+    //   link: `/generate-questions/teacher-tool/group-creator`,
+    // },
+    // {
+    //   id: 5,
+    //   option: "Seating Chart",
+    //   prompt: "This is Group Creator Prompt",
+    //   link: `/generate-questions/teacher-tool/seating-chart`,
+    // },
   ];
   return (
     <div className="mr-8">

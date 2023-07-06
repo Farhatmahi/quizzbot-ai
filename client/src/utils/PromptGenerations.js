@@ -93,9 +93,45 @@ export const generatePrompt = ({
       break;
 
     case "matching":
+      prompt = `Give me ${questionCount} matching in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
+      """${content}""" The response will be like this ${format}
+
+      1. {Key Word 1}
+      2. {Key Word 2}
+      3. {Key Word 3}
+      ... So on
+
+      a. {Option}
+      b. {Option}
+      ... So on
+
+      Answer And Explanation responses in this format at the last not after the question:
+
+      
+      1. Answer: {Correct Match for Key Word 1} - {Explanation}
+      2. Answer: {Correct Match for Key Word 2} - {Explanation}
+      3. Answer: {Correct Match for Key Word 3} - {Explanation}
+;
+      `;
       break;
 
     case "calculations":
+      prompt = `Give me ${questionCount} calculation in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
+    
+      """${content}""" The response will be like this ${format}
+
+      1. {Question will be here}.
+      2. {Question will be here}.
+      ...So on
+
+      Answer And Explanation responses in this format at the last not after the question
+
+      Answer:
+      1. {Answer 1} - {Make a mathematical calculation of the entire text of this question and work out some other calculations from this text.}
+      2. {Answer 2} - {Make a mathematical calculation of the entire text of this question and work out some other calculations from this text.}
+      ... So on
+
+    `;
       break;
 
     case "lesson-planer":
@@ -107,7 +143,7 @@ export const generatePrompt = ({
       break;
 
     case "study-points":
-      prompt = `"""${content}""" from the above text wrapped with """ Give me a project plan with the level of ${level} in ${language} on ${difficulty}`;
+      prompt = `"""${content}""" from the above text wrapped with """ Give me a study plan and pointing line by line with the level of ${level} in ${language} on ${difficulty}`;
       break;
 
     case "group-creator":
