@@ -5,9 +5,9 @@ const userSchema = new Schema<IUser>(
   {
     email: { type: String, required: true },
     password: { type: String, required: true },
-    avatar: { type: String, required: true },
-    membership: { type: String, required: true },
-    transaction: { type: String, required: true },
+    avatar: { type: String },
+    membership: { type: String },
+    transaction: { type: String },
   },
   {
     timestamps: true,

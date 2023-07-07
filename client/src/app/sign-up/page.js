@@ -8,6 +8,7 @@ import PasswordInput from "@/components/Shared/PasswordInput";
 import SocialMediaLogin from "@/components/SocialMediaLogin";
 import { AuthContext } from "@/context/AuthProvider";
 import { validateForm } from "@/utils/validateForm";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
@@ -50,7 +51,8 @@ const page = () => {
       setLoading(true);
       createUser(email, password)
         .then((res) => {
-          const user = res.user;
+          const userData = res.user;
+          saveToDatabaseUser(userData, password);
           const userInfo = {
             displayName: fullName,
           };
@@ -78,6 +80,26 @@ const page = () => {
           agree: "Please agree to the Terms & Condition",
         }));
       }
+    }
+  };
+
+  const saveToDatabaseUser = async (userData, password) => {
+    const user = {
+      email: userData?.email,
+      password: password,
+      avatar: "",
+      membership: "",
+      transaction: "sth23yhaqeghvc",
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/users/create-user",
+        { user }
+      );
+      const data = response.data;
+    } catch (error) {
+      toast.error(error.message);
     }
   };
 

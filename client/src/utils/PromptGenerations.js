@@ -85,11 +85,12 @@ export const generatePrompt = ({
     case "blanks":
       prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
     
-      """${content}""" The fill-in-the-blank sentence is: "${content} ______."
+      """${content}""" The fill-in-the-blank sentence is:  ______."
 
-      Answer response like this format
-      
-      The fill-in-the-blank sentence is: {Sentence will be here} {Correct answer here}.`;
+      Answer And Explanation responses in this format at the last not after the question
+
+      Answer:
+      {Sentence will be here} {Correct answer here}.`;
       break;
 
     case "matching":
@@ -139,7 +140,7 @@ export const generatePrompt = ({
       break;
 
     case "project-ideas":
-      prompt = `"""${content}""" from the above text wrapped with """ Give me a project plan with the level of ${level} in ${language} on ${difficulty}`;
+      prompt = `"""${content}""" from the above text wrapped with """ Give me a project ideas with the level of ${level} in ${language} on ${difficulty}`;
       break;
 
     case "study-points":
