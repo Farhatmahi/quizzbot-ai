@@ -17,14 +17,7 @@ const DynamicEditor = dynamic(
 
 const Output = ({ generatedResponse }) => {
   const [editorState, setEditorState] = useState(null);
-
-  // useEffect(() => {
-  //   setEditorState(EditorState.createEmpty());
-  // }, []);
-
-  // const onEditorStateChange = (newEditorState) => {
-  //   setEditorState(newEditorState);
-  // };
+  const [title, setTitle] = useState("");
 
   useEffect(() => {
     if (generatedResponse) {
@@ -41,6 +34,16 @@ const Output = ({ generatedResponse }) => {
 
   const onEditorStateChange = (newEditorState) => {
     setEditorState(newEditorState);
+  };
+
+  const handleChange = (event) => {
+    setTitle(event.target.value);
+  };
+  
+
+  const handleSave = () => {
+    // console.log(title)
+    // console.log(generatedResponse)
   };
 
   return (
@@ -74,6 +77,7 @@ const Output = ({ generatedResponse }) => {
       <div className="flex justify-between items-center gap-6 mt-12 mb-6">
         <div className="flex flex-col flex-grow">
           <input
+            onChange={handleChange}
             type="text"
             name="saveGeneratedQuestion"
             className="px-6 py-2 w-full rounded-2xl border-2 border-[#eee]"
@@ -81,6 +85,7 @@ const Output = ({ generatedResponse }) => {
           />
         </div>
         <button
+          onClick={handleSave}
           className="px-3 py-3 text-white rounded  bg-gradient-to-b from-[#FC495F] from-62% via-[#FFc371] to-[#FF0000] to-38% 
        bg-size-200 bg-pos-50"
         >

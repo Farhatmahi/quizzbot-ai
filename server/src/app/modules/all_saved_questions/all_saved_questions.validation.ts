@@ -18,6 +18,12 @@ const createSavedQuestionZodSchema = z.object({
       number_of_sets: z.string({
         required_error: 'Number of sets is required',
       }),
+      title: z.string({
+        required_error: 'Title is required',
+      }),
+      generatedText: z.string({
+        required_error: 'Generated text is required',
+      }),
     }),
   }),
 })
