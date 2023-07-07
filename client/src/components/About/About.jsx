@@ -1,10 +1,26 @@
+"use client";
 import React from "react";
+import HomeHeader from "../HomePgae/HomeHeader";
+import demo from "../../../public/assets/demo.mp4";
 
 const About = () => {
   return (
-    <div className="mt-16">
+    <div className="">
       <div>
-        <h2>i am from about</h2>
+        <HomeHeader />
+        <video
+          src={demo}
+          autoPlay
+          loop
+          muted
+          style={{
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
       </div>
     </div>
   );

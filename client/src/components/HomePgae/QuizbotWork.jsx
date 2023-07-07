@@ -2,8 +2,34 @@ import Link from "next/link";
 import textimage from "../../../public/assets/text1.png";
 import techingimage from "../../../public/assets/teachers.png";
 import aicodeimage from "../../../public/assets/aicode.png";
+import truefalse from "../../../public/assets/truefalse.png";
+import { motion } from "framer-motion";
 import Image from "next/image";
+
 const QuizbotWork = () => {
+  const variants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const images = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+      },
+    },
+  };
   return (
     <div>
       <section class="bg-white ">
@@ -14,11 +40,16 @@ const QuizbotWork = () => {
             </h1>
           </div>
 
-          <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3">
-            <div>
-              <div class="relative">
+          <motion.div
+            variants={variants}
+            initial="hidden"
+            animate="show"
+            class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3"
+          >
+            <motion.div variants={images}>
+              <div class="relative ">
                 <Image
-                  class="object-cover object-center rounded-2xl "
+                  class="object-cover object-center rounded-2xl border border-[#e0dfdf] "
                   src={textimage}
                   width={0}
                   height={0}
@@ -47,11 +78,11 @@ const QuizbotWork = () => {
               >
                 See more
               </Link>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div variants={images}>
               <div class="relative">
                 <Image
-                  class="object-cover object-center rounded-2xl "
+                  class="object-cover object-center rounded-2xl border border-[#e0dfdf] "
                   src={techingimage}
                   width={0}
                   height={0}
@@ -80,11 +111,11 @@ const QuizbotWork = () => {
               >
                 See more
               </Link>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div variants={images}>
               <div class="relative">
                 <Image
-                  class="object-cover object-center rounded-2xl "
+                  class="object-cover object-center rounded-2xl border border-[#e0dfdf]"
                   src={aicodeimage}
                   width={0}
                   height={0}
@@ -112,8 +143,8 @@ const QuizbotWork = () => {
               >
                 See more
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>

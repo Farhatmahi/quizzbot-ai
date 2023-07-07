@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import logo from "../../../public/assets/logo.png";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 const TOP_OFFSET = 66;
 const HomeHeader = () => {
@@ -40,23 +41,28 @@ const HomeHeader = () => {
           showBackground ? "bg-[#eee] bg-opacity-90" : ""
         }`}
       >
-        <div class="relative flex items-center justify-between container mx-auto">
+        <div class="relative flex items-center justify-between container mx-auto ">
           <div class="flex items-center">
             <Link href="/" class="inline-flex items-center lg:mr-24">
               <Image src={logo} alt="Logo" width={150} height={100} />
             </Link>
             <ul class="flex items-center hidden space-x-8 lg:flex lg:ml-96 justify-between">
-              <li>
+              <motion.li
+                whileHover={{ scale: 1.2 }}
+                // whileTap={{ scale: 1.1 }}
+                // drag="x"
+                // dragConstraints={{ left: -100, right: 100 }}
+              >
                 <Link
                   href="/"
                   aria-label="Our product"
-                  class="font-bold tracking-wide text-gray-900 transition-colors duration-200
+                  class="font-bold tracking-wide text-[gray-900] transition-colors duration-200
                    "
                 >
                   Home
                 </Link>
-              </li>
-              <li>
+              </motion.li>
+              <motion.li whileHover={{ scale: 1.2 }}>
                 <Link
                   href="/dashboard"
                   aria-label="Our product"
@@ -65,8 +71,8 @@ const HomeHeader = () => {
                 >
                   Dashboard
                 </Link>
-              </li>
-              <li>
+              </motion.li>
+              {/* <li>
                 <Link
                   href="/"
                   aria-label="Our product"
@@ -74,8 +80,8 @@ const HomeHeader = () => {
                 >
                   Contact
                 </Link>
-              </li>
-              <li>
+              </li> */}
+              <motion.li whileHover={{ scale: 1.2 }}>
                 <Link
                   href="/about"
                   aria-label="Product pricing"
@@ -83,7 +89,7 @@ const HomeHeader = () => {
                 >
                   About
                 </Link>
-              </li>
+              </motion.li>
               {/* <li>
                 <Link
                   href="/marketplace"
@@ -207,7 +213,7 @@ const HomeHeader = () => {
                   </div>
                   <nav>
                     <ul class="space-y-4">
-                      <li>
+                      <motion.li whileHover={{ scale: 1.2 }}>
                         <Link
                           href="/"
                           aria-label="Our product"
@@ -216,16 +222,16 @@ const HomeHeader = () => {
                         >
                           Home
                         </Link>
-                      </li>
-                      <li>
+                      </motion.li>
+                      <motion.li whileHover={{ scale: 1.2 }}>
                         <Link
-                          href="/"
+                          href="/dashboard"
                           aria-label="Our product"
                           class="font-bold tracking-wide text-gray-900 transition-colors duration-200 hover:text-purple-400"
                         >
-                          Contact
+                          Dashboard
                         </Link>
-                      </li>
+                      </motion.li>
 
                       {/* <li>
                         <Link
@@ -236,7 +242,7 @@ const HomeHeader = () => {
                           Marketplace
                         </Link>
                       </li> */}
-                      <li>
+                      <motion.li whileHover={{ scale: 1.2 }}>
                         <Link
                           href="/about"
                           aria-label="About us"
@@ -244,7 +250,7 @@ const HomeHeader = () => {
                         >
                           About
                         </Link>
-                      </li>
+                      </motion.li>
                       {user?.uid ? (
                         <>
                           <li onClick={handleLogout}>
