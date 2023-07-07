@@ -140,7 +140,7 @@ export const generatePrompt = ({
       break;
 
     case "project-ideas":
-      prompt = `"""${content}""" from the above text wrapped with """ Give me a project plan with the level of ${level} in ${language} on ${difficulty}`;
+      prompt = `"""${content}""" from the above text wrapped with """ Give me a project ideas with the level of ${level} in ${language} on ${difficulty}`;
       break;
 
     case "study-points":
