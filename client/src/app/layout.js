@@ -33,6 +33,7 @@ export default function RootLayout({ children }) {
           <AuthProvider>
             {pathname !== "/login" &&
             pathname !== "/sign-up" &&
+            pathname !== "/about" &&
             pathname !== "/" ? (
               <>
                 <div className={`${open ? "grid grid-cols-5 gap-8" : null} `}>

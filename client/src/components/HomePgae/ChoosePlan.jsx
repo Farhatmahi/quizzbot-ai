@@ -1,5 +1,6 @@
+"use client";
 import Link from "next/link";
-
+import { motion } from "framer-motion";
 const ChoosePlan = () => {
   return (
     <div>
@@ -34,7 +35,7 @@ const ChoosePlan = () => {
               <button
                 class="flex items-center justify-center px-3 py-2 font-bold text-gray-800 
               uppercase transition-colors duration-300 transform bg-transparent rounded-2xl focus:outline-none 
-                hover:bg-gray-200"
+                "
               >
                 <span class="mx-1">Annually</span>
                 <span
@@ -52,7 +53,9 @@ const ChoosePlan = () => {
             class="flex flex-col items-center justify-center mt-16 space-y-6 md:items-end md:-mx-5
            md:space-y-0 md:flex-row"
           >
-            <div
+            <motion.div
+              // whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               class="w-full px-6 py-4 transition-colors duration-300 transform rounded-2xl md:mx-5 
             md:w-96 bg-gray-50 "
             >
@@ -157,18 +160,22 @@ const ChoosePlan = () => {
               </div>
               <Link href="/transaction">
                 {" "}
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                   class="w-full px-4 py-2 mt-10 font-medium tracking-wide btn btn-primary
                text-white capitalize transition-all  transform rounded-2xl
                 duration-500 bg-gradient-to-r from-[#FC495F] from-62% via-[#FFc371] to-[#FF0000] to-38%
                 bg-size-200 bg-pos-0 hover:bg-pos-100 "
                 >
                   Choose Basic
-                </button>
+                </motion.button>
               </Link>
-            </div>
+            </motion.div>
 
-            <div
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               class="w-full overflow-hidden transition-colors duration-300 transform rounded-2xl
              md:mx-5 md:w-96 bg-gray-50 "
             >
@@ -285,17 +292,19 @@ const ChoosePlan = () => {
                 </div>
                 <Link href="/transaction">
                   {" "}
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     class="w-full px-4 py-2 mt-10 font-medium tracking-wide btn btn-primary
                text-white capitalize transition-all  transform rounded-2xl
                 duration-500 bg-gradient-to-r from-[#FC495F] from-62% via-[#FFc371] to-[#FF0000] to-38%
                 bg-size-200 bg-pos-0 hover:bg-pos-100 "
                   >
                     Choose Pro
-                  </button>
+                  </motion.button>
                 </Link>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

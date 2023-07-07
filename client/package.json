@@ -27,5 +27,8 @@
     "react-icons": "^4.9.0",
     "react-loader-spinner": "^5.3.4",
     "tailwindcss": "3.3.2"
+  },
+  "devDependencies": {
+    "file-loader": "^6.2.0"
   }
 }

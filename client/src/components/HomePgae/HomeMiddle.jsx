@@ -3,10 +3,39 @@ import Lottie from "lottie-react";
 import quiz from "../../../public/assets/quiz.json";
 import PrimaryButton from "../PrimaryButton";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const HomeMiddle = () => {
+  const variants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const images = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+      },
+    },
+  };
   return (
-    <div className="lg:flex  lg:mx-20   lg:ml-0 ml-6">
+    <motion.div
+      variants={variants}
+      initial="hidden"
+      animate="show"
+      className="lg:flex  lg:mx-20   lg:ml-0 ml-6"
+    >
       <div className="text-[#0e0d0d] mt-6 lg:ml-32">
         <p className="text-[16px] font-semibold uppercase">
           AI Question Generator
@@ -32,10 +61,13 @@ const HomeMiddle = () => {
           </button>
         </Link>
       </div>
-      <div className="flex items-center  justify-center h-30 w-full lg:ml-56">
+      <motion.div
+        variants={images}
+        className="flex items-center  justify-center h-30 w-full lg:ml-56"
+      >
         <Lottie animationData={quiz} loop={true}></Lottie>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
