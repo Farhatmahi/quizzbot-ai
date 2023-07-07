@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import PrimaryButton from "../PrimaryButton";
 import Output from "../Shared/Output";
-
 import DropdownOptions from "./DropdownOptions/DropdownOptions";
 import { usePathname } from "next/navigation";
 import axios from "axios";
@@ -15,9 +14,10 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
 
   const pathname = usePathname();
-  const pathParts = pathname.split("/"); // Split the pathname by '/'
+  const pathParts = pathname.split("/");
   const format = pathParts[pathParts.length - 1];
 
+  let prompt = "";
   if (pathname === "/generate-questions/true-false") {
     prompt = "This is True false Prompt";
   } else if (pathname === "/generate-questions/multiple-questions") {
@@ -43,6 +43,7 @@ const Home = () => {
   } else if (pathname === "/generate-questions/teacher-tool/study-points") {
     prompt = "This is study Points Prompt";
   }
+
   const handleSubmit = (e) => {
     setLoading(true);
     e.preventDefault();
@@ -83,15 +84,14 @@ const Home = () => {
       .then((res) => {
         setGeneratedResponse(res.data.data);
         setLoading(false);
-        toast.success("Generate successfull");
+        toast.success("Generate successful");
       })
       .catch((err) => {
         setLoading(false);
-        toast.error("Error to generate response");
+        toast.error("Error generating response");
       });
-
-    // form.reset();
   };
+
   const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const languageOptions = [
     "English",
@@ -120,32 +120,28 @@ const Home = () => {
     "High School",
     "University",
   ];
-  const difficulty = ["Easy", "Average", "Above Average", "Difficult"];
+  const difficultyOptions = ["Easy", "Average", "Above Average", "Difficult"];
   const numberOfVersions = [1, 2, 3];
+
   return (
-    <div className="mr-8">
-      <div className="grid md:grid-cols-3 gap-16 mt-10">
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="col-span-1">
-            {format === "lesson-planer" ||
-            format === "project-ideas" ||
-            format === "study-points" ? null : (
-              <DropdownOptions
-                label="How Many Question?"
-                name="questionCount"
-                options={options}
-              ></DropdownOptions>
-            )}
-            {/* <TextInput label="How Many Question?" name="questionCount" /> */}
+    <div className="mx-8">
+      <div className="grid md:grid-cols-2 gap-16 mt-10">
+        <form onSubmit={handleSubmit}>
+          <div>
+            {format !== "lesson-planer" &&
+              format !== "project-ideas" &&
+              format !== "study-points" && (
+                <DropdownOptions
+                  label="How Many Questions?"
+                  name="questionCount"
+                  options={options}
+                />
+              )}
             <div className="flex flex-col mb-4">
               {format === "project-ideas" || format === "study-points" ? (
-                <label htmlFor="" className=" text-sm">
-                  Topic Name?
-                </label>
+                <label className="text-sm">Topic Name?</label>
               ) : (
-                <label htmlFor="" className=" text-sm">
-                  Paste Your Text?
-                </label>
+                <label className="text-sm">Paste Your Text?</label>
               )}
               <textarea
                 className="px-6 py-2 rounded-2xl border-2 border-[#eee] mt-3"
@@ -158,36 +154,36 @@ const Home = () => {
             format === "project-ideas" ||
             format === "study-points" ? (
               <DropdownOptions
-                label="Level ?"
+                label="Level?"
                 name="level"
                 options={levelOptions}
-              ></DropdownOptions>
+              />
             ) : null}
             <DropdownOptions
-              label="Language ?"
+              label="Language?"
               name="language"
               options={languageOptions}
-            ></DropdownOptions>
+            />
             <DropdownOptions
               label="Difficulty?"
               name="difficulty"
-              options={difficulty}
-            ></DropdownOptions>
+              options={difficultyOptions}
+            />
             <DropdownOptions
               label="Number Of Versions?"
               name="versionCount"
               options={numberOfVersions}
-            ></DropdownOptions>
+            />
             {loading ? (
-              <PrimaryButton loading={loading} classNamemb="mb-3">
+              <PrimaryButton loading={loading} className="mb-3">
                 <LoaderSpinner /> Generating Question
               </PrimaryButton>
             ) : (
-              <PrimaryButton classNamemb="mb-3">Generate Output</PrimaryButton>
+              <PrimaryButton className="mb-3">Generate Output</PrimaryButton>
             )}
           </div>
         </form>
-        <div className="rounded-lg mr-8 col-span-2">
+        <div className="rounded-lg">
           <Output generatedResponse={generatedResponse} />
         </div>
       </div>

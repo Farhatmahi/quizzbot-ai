@@ -8,14 +8,27 @@ const Header = ({ open, setOpen }) => {
   const user = useContext(AuthContext);
   return (
     <div className="flex items-center justify-between">
-      <button
-        className={`${
-          open ? "transition-all duration-700" : "ml-8"
-        } bg-gradient-to-r from-[#FC495F] to-[#FFc371] w-9 h-9 rounded-full lg:flex md:flex items-center justify-center cursor-pointer transition-all duration-700 hidden`}
-        onClick={() => setOpen(!open)}
-      >
-        <FaBars className="text-white text-lg hover:text-black" />
-      </button>
+      <div className="lg:block md:block hidden">
+        <button
+          className={`${
+            open ? "transition-all duration-700" : ""
+          } bg-gradient-to-r from-[#FC495F] to-[#FFc371] w-9 h-9 rounded-full lg:flex md:flex items-center justify-center cursor-pointer transition-all duration-700 hidden ml-8`}
+          onClick={() => setOpen(!open)}
+        >
+          <FaBars className="text-white text-lg hover:text-black" />
+        </button>
+      </div>
+      {/* Mobile Code */}
+      <div className="lg:hidden md:hidden block">
+        <button
+          className={`${
+            open ? "transition-all duration-700" : ""
+          } bg-gradient-to-r from-[#FC495F] to-[#FFc371] w-9 h-9 rounded-full flex items-center justify-center cursor-pointer transition-all duration-700 ml-8`}
+          onClick={() => setOpen(!open)}
+        >
+          <FaBars className="text-white text-lg hover:text-black" />
+        </button>
+      </div>
       <div className="flex justify-end items-center gap-8 pt-4 py-2 z-0 relative">
         {user && <h2>{user?.user?.displayName}</h2>}
         <div className="rounded-full bg-gradient-to-r from-[#FC495F] to-[#FFc371] p-1">

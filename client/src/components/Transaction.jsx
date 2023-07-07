@@ -1,6 +1,6 @@
 const Transaction = () => {
   return (
-    <section className="border-2 border-[#EEE]  rounded-xl py-5 mt-5 mr-8 min-h-screen">
+    <section className="border-2 border-[#EEE]  rounded-xl py-5 mt-5 mx-8 min-h-screen">
       {/* Membership Text */}
       <h1 className="text-center text-3xl font-bold">Transaction</h1>
 
