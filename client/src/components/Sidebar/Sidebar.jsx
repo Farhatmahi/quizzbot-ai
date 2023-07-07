@@ -21,12 +21,11 @@ const Sidebar = () => {
     logOut()
       .then(() => {
         router.push("/login");
-        toast.success("Logout Successfully!!")
+        toast.success("Logout Successfully!!");
       })
-      .catch((e) => console.log(e));
+      .catch((e) => toast.error(e.message));
   };
   const pathname = usePathname();
-  console.log(pathname);
   const header = [
     {
       id: 1,

@@ -8,14 +8,13 @@ export const generatePrompt = ({
   level,
   difficulty,
 }) => {
-  let prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
-    
-        """${content}"""
-        `;
+  let prompt = ``;
 
   switch (format) {
     case "true-false":
-      prompt += `The response will be like this ${format} and answer
+      prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
+    
+      """${content}""" The response will be like this ${format} and answer
     
       1. {Question will be here}
       a) Option 1
@@ -27,14 +26,18 @@ export const generatePrompt = ({
       ... So on 
 
       Answer responses in this format at the last not after the question
-      1. Answer: a) Give me the correct ${format} answer will be here - Give me the correct answer will be here.
-      2. Answer: b) Give me the correct ${format} answer will be here - Give me the correct answer will be here.
+
+      Answer:
+      1. a) Give me the correct True or False answer will be here - Give me the correct answer will be here.
+      2. b) Give me the correct True or False answer will be here - Give me the correct answer will be here.
       ... So on
         `;
       break;
 
     case "multiple-questions":
-      prompt += `The response will be like this ${format} and answer
+      prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
+    
+      """${content}""" The response will be like this ${format} and answer
       
       1. {Question will be here}
         a) Option 1
@@ -51,14 +54,18 @@ export const generatePrompt = ({
       ... So on
     
       Answer responses in this format at the last not after the question
-      1. Answer: a) Give me the correct option answer will be here - Give me the correct answer will be here.
-      2. Answer: b) Give me the correct option answer will be here - Give me the correct answer will be here.
+
+      Answers:
+      1. a) Give me the correct option answer will be here - Give me the correct answer will be here.
+      2. b) Give me the correct option answer will be here - Give me the correct answer will be here.
       ... So on
         `;
       break;
 
     case "short-answers":
-      prompt += `The response will be like this ${format} and answer
+      prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
+    
+      """${content}""" The response will be like this ${format} and answer
     
       1. {Question will be here},
       2. {Question will be here},
@@ -66,15 +73,19 @@ export const generatePrompt = ({
       ... So on
       
       Answer And Explanation responses in this format at the last not after the question
-      1. Answer: {Question Number 1 Correct Answer will be here} - {Give me the explaination answer wiil be here},
-      2. Answer: {Question Number 2 Correct Answer will be here} - {Give me the explaination answer wiil be here},
-      3. Answer: {Question Number 3 Correct Answer will be here} - {Give me the explaination answer wiil be here},
+
+      Answer:
+      1. {Question Number 1 Correct Answer will be here} - {Give me the explaination answer wiil be here},
+      2. {Question Number 2 Correct Answer will be here} - {Give me the explaination answer wiil be here},
+      3. {Question Number 3 Correct Answer will be here} - {Give me the explaination answer wiil be here},
       ... So on
       `;
       break;
 
     case "blanks":
-      prompt += `The fill-in-the-blank sentence is: "${content} ______."
+      prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
+    
+      """${content}""" The fill-in-the-blank sentence is: "${content} ______."
 
       Answer response like this format
       
@@ -82,35 +93,66 @@ export const generatePrompt = ({
       break;
 
     case "matching":
-      prompt += `Handle matching questions format here`;
+      prompt = `Give me ${questionCount} matching in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
+      """${content}""" The response will be like this ${format}
+
+      1. {Key Word 1}
+      2. {Key Word 2}
+      3. {Key Word 3}
+      ... So on
+
+      a. {Option}
+      b. {Option}
+      ... So on
+
+      Answer And Explanation responses in this format at the last not after the question:
+
+      
+      1. Answer: {Correct Match for Key Word 1} - {Explanation}
+      2. Answer: {Correct Match for Key Word 2} - {Explanation}
+      3. Answer: {Correct Match for Key Word 3} - {Explanation}
+;
+      `;
       break;
 
     case "calculations":
-      prompt += `Handle calculations format here`;
+      prompt = `Give me ${questionCount} calculation in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
+    
+      """${content}""" The response will be like this ${format}
+
+      1. {Question will be here}.
+      2. {Question will be here}.
+      ...So on
+
+      Answer And Explanation responses in this format at the last not after the question
+
+      Answer:
+      1. {Answer 1} - {Make a mathematical calculation of the entire text of this question and work out some other calculations from this text.}
+      2. {Answer 2} - {Make a mathematical calculation of the entire text of this question and work out some other calculations from this text.}
+      ... So on
+
+    `;
       break;
 
     case "lesson-planer":
-      prompt += `Handle ${format} format here`;
+      prompt = `"""${content}""" from the above text wrapped with """ Give me a lesson plan with the level of ${level} in ${language} on ${difficulty}`;
       break;
 
     case "project-ideas":
-      prompt += `Handle ${format} format here`;
+      prompt = `"""${content}""" from the above text wrapped with """ Give me a project plan with the level of ${level} in ${language} on ${difficulty}`;
       break;
 
     case "study-points":
-      prompt += `Handle ${format} format here`;
+      prompt = `"""${content}""" from the above text wrapped with """ Give me a study plan and pointing line by line with the level of ${level} in ${language} on ${difficulty}`;
       break;
 
     case "group-creator":
-      prompt += `Handle ${format} format here`;
       break;
 
     case "seating-chart":
-      prompt += `Handle ${format} format here`;
       break;
 
     default:
-      console.log(`Handle unknown format here`);
       break;
   }
 

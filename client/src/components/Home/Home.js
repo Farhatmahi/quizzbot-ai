@@ -7,14 +7,16 @@ import DropdownOptions from "./DropdownOptions/DropdownOptions";
 import { usePathname } from "next/navigation";
 import axios from "axios";
 import { generatePrompt } from "@/utils/PromptGenerations";
+import { toast } from "react-hot-toast";
+import LoaderSpinner from "../Loader/LoaderSpinner";
 
 const Home = () => {
   const [generatedResponse, setGeneratedResponse] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const pathname = usePathname();
   const pathParts = pathname.split("/"); // Split the pathname by '/'
   const format = pathParts[pathParts.length - 1];
-  console.log(format);
 
   if (pathname === "/generate-questions/true-false") {
     prompt = "This is True false Prompt";
@@ -42,14 +44,23 @@ const Home = () => {
     prompt = "This is study Points Prompt";
   }
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     const form = e.target;
     let questionCount;
     let level;
-    if (format !== "lesson-planer") {
+    if (
+      format !== "lesson-planer" &&
+      format !== "project-ideas" &&
+      format !== "study-points"
+    ) {
       questionCount = form.questionCount.value;
     }
-    if (format === "lesson-planer") {
+    if (
+      format === "lesson-planer" ||
+      format === "project-ideas" ||
+      format === "study-points"
+    ) {
       level = form.level.value;
     }
     const content = form.content.value;
@@ -67,14 +78,17 @@ const Home = () => {
     });
 
     const data = { prompt };
-
     axios
       .post("http://localhost:4000/api/v1/generate", data)
       .then((res) => {
-        console.log(res.data.data);
         setGeneratedResponse(res.data.data);
+        setLoading(false);
+        toast.success("Generate successfull");
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => {
+        setLoading(false);
+        toast.error("Error to generate response");
+      });
 
     // form.reset();
   };
@@ -113,7 +127,9 @@ const Home = () => {
       <div className="grid md:grid-cols-3 gap-16 mt-10">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="col-span-1">
-            {format === "lesson-planer" ? null : (
+            {format === "lesson-planer" ||
+            format === "project-ideas" ||
+            format === "study-points" ? null : (
               <DropdownOptions
                 label="How Many Question?"
                 name="questionCount"
@@ -122,9 +138,15 @@ const Home = () => {
             )}
             {/* <TextInput label="How Many Question?" name="questionCount" /> */}
             <div className="flex flex-col mb-4">
-              <label htmlFor="" className=" text-sm">
-                Paste Your Text?
-              </label>
+              {format === "project-ideas" || format === "study-points" ? (
+                <label htmlFor="" className=" text-sm">
+                  Topic Name?
+                </label>
+              ) : (
+                <label htmlFor="" className=" text-sm">
+                  Paste Your Text?
+                </label>
+              )}
               <textarea
                 className="px-6 py-2 rounded-2xl border-2 border-[#eee] mt-3"
                 rows={7}
@@ -132,7 +154,9 @@ const Home = () => {
                 required
               ></textarea>
             </div>
-            {format === "lesson-planer" ? (
+            {format === "lesson-planer" ||
+            format === "project-ideas" ||
+            format === "study-points" ? (
               <DropdownOptions
                 label="Level ?"
                 name="level"
@@ -154,7 +178,13 @@ const Home = () => {
               name="versionCount"
               options={numberOfVersions}
             ></DropdownOptions>
-            <PrimaryButton classNamemb="mb-3">Generate Output</PrimaryButton>
+            {loading ? (
+              <PrimaryButton loading={loading} classNamemb="mb-3">
+                <LoaderSpinner /> Generating Question
+              </PrimaryButton>
+            ) : (
+              <PrimaryButton classNamemb="mb-3">Generate Output</PrimaryButton>
+            )}
           </div>
         </form>
         <div className="rounded-lg mr-8 col-span-2">

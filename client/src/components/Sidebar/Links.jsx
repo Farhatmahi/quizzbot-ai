@@ -10,7 +10,6 @@ import { AiFillGift, AiFillFileText } from "react-icons/ai";
 
 const Links = () => {
   const pathname = usePathname();
-  console.log(pathname);
   const header = [
     {
       id: 1,

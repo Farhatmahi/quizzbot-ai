@@ -5,7 +5,6 @@ import React from "react";
 // className={`hover:border-b-2 hover:border-b-gradient-color-62 hover:text-gradient-color-62 text-[#626262] font-semibold mx-2 py-5 cursor-pointer text-center flex items-center justify-center hover:bg-transparent hover:transition duration-300 ease-in-out relative text-sm`}
 const Options = () => {
   const pathname = usePathname();
-  console.log(pathname);
   const buttonOptions = [
     {
       id: 1,

@@ -10,7 +10,7 @@ const SocialMediaLogin = ({ children }) => {
   const handleGoogleLogin = () => {
     signInWithGoogle().then((res) => {
       const user = res.user;
-      console.log(res);
+
       router.push("/dashboard");
     });
   };

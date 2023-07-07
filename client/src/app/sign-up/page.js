@@ -51,7 +51,6 @@ const page = () => {
       createUser(email, password)
         .then((res) => {
           const user = res.user;
-          console.log(user);
           const userInfo = {
             displayName: fullName,
           };
@@ -59,15 +58,17 @@ const page = () => {
             .then((result) => {
               setLoading(false);
               router.push("/dashboard");
-              toast.success("Congratulation!! Your Registration is successfull")
+              toast.success(
+                "Congratulation!! Your Registration is successfull"
+              );
             })
             .catch((err) => {
-              console.log("Error updating name");
+              toast.error(err.message);
             });
           setLoading(false);
         })
         .catch((err) => {
-          console.log(err);
+          toast.error(err.message);
           setLoading(false);
         });
     } else {

@@ -49,15 +49,15 @@ const LoginForm = () => {
           const user = res.user;
           setLoading(false);
           router.push("/dashboard");
-          toast.success("Login has been Successfull!!")
+          toast.success("Login has been Successfull!!");
         })
         .catch((err) => {
-          console.log(err);
+          toast.error(err.message);
           setLoginError("Incorrect email or password.");
           setLoading(false);
         });
     } else {
-      console.log("issue");
+      toast.error("Issue");
     }
   };
 
