@@ -35,6 +35,7 @@ const SingleSavedQuestionSchema = new Schema<ISingleSavedQuestion>(
       required: true,
       enum: numberOfSets,
     },
+    title: { type: String },
     generatedText: {
       type: String,
     },

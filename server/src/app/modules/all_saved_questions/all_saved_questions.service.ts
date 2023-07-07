@@ -1,7 +1,7 @@
 import { ISingleSavedQuestion } from '../single_saved_question/single_saved_questions.interface'
 import AllSavedQuestions from './all_saved_questions.model'
 import SingleSavedQuestion from '../single_saved_question/single_saved_question.model'
-import mongoose, { ObjectId } from 'mongoose'
+import mongoose from 'mongoose'
 
 const addSavedQuestion = async (
   singleSavedQuestionData: ISingleSavedQuestion,

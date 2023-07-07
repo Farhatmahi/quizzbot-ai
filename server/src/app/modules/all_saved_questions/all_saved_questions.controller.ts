@@ -11,6 +11,7 @@ const addSavedQuestion = catchAsync(async (req: Request, res: Response) => {
     language,
     difficulty,
     number_of_sets,
+    title,
     generatedText,
   } = req.body.question
   const userId = req.params.userId
@@ -21,6 +22,7 @@ const addSavedQuestion = catchAsync(async (req: Request, res: Response) => {
     language,
     difficulty,
     number_of_sets,
+    title,
     generatedText,
   }
 
