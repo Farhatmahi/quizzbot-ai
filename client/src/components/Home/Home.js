@@ -79,6 +79,7 @@ const Home = () => {
     });
 
     const data = { prompt };
+    console.log(data);
     axios
       .post("http://localhost:4000/api/v1/generate", data)
       .then((res) => {
@@ -112,14 +113,9 @@ const Home = () => {
     "Swedish",
     "Turkish",
     "Vietnamese",
+    "Bangla",
   ];
-  const levelOptions = [
-    "Nursery",
-    "Elementary School",
-    "Middle School",
-    "High School",
-    "University",
-  ];
+  const levelOptions = ["Beginner", "Medium", "Advance", "Hard"];
   const difficultyOptions = ["Easy", "Average", "Above Average", "Difficult"];
   const numberOfVersions = [1, 2, 3];
 

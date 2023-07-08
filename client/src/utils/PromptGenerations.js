@@ -83,14 +83,8 @@ export const generatePrompt = ({
       break;
 
     case "blanks":
-      prompt = `Give me ${questionCount} questions in ${difficulty} difficulty and ${language} language in ${format} format from the below text wrapped with """ : 
-    
-      """${content}""" The fill-in-the-blank sentence is:  ______."
+      prompt = `Give me 5 fill in the blank question regarding the following text ${content}`;
 
-      Answer And Explanation responses in this format at the last not after the question
-
-      Answer:
-      {Sentence will be here} {Correct answer here}.`;
       break;
 
     case "matching":
@@ -136,15 +130,15 @@ export const generatePrompt = ({
       break;
 
     case "lesson-planer":
-      prompt = `"""${content}""" from the above text wrapped with """ Give me a lesson plan with the level of ${level} in ${language} on ${difficulty}`;
+      prompt = `Give me a lesson plan with the ${level} level with ${difficulty} from the below text wrapped with in this """${content}""" in ${language} language`;
       break;
 
     case "project-ideas":
-      prompt = `"""${content}""" from the above text wrapped with """ Give me a project ideas with the level of ${level} in ${language} on ${difficulty}`;
+      prompt = `Give me a project plan with the ${level} level with ${difficulty} from the below text wrapped with in this """${content}""" in ${language} language`;
       break;
 
     case "study-points":
-      prompt = `"""${content}""" from the above text wrapped with """ Give me a study plan and pointing line by line with the level of ${level} in ${language} on ${difficulty}`;
+      prompt = `"""${content}""" from the above text wrapped with """ Give me a study point and pointing line by line with the level of ${level} in ${language} on ${difficulty}`;
       break;
 
     case "group-creator":
