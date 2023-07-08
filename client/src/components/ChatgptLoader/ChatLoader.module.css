@@ -1,0 +1,27 @@
+.loader {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  margin-bottom: 5px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: #fc495f;
+  border-radius: 50%;
+  animation: dotAnimation 1s infinite ease-in-out;
+  margin: 2px;
+}
+
+@keyframes dotAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
