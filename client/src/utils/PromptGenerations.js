@@ -83,7 +83,7 @@ export const generatePrompt = ({
       break;
 
     case "blanks":
-      prompt = `Give me 5 fill in the blank question regarding the following text ${content}`;
+      prompt = `Give me ${questionCount} ${difficulty} fill in the blank sentence in ${language} language from in this text """${content}""" and give me the sentences, in every sentences must have a fill in the blanks and Answer: {give me the answer after every question}`;
 
       break;
 

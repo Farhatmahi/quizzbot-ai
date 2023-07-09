@@ -79,7 +79,6 @@ const Home = () => {
     });
 
     const data = { prompt };
-    console.log(data);
     axios
       .post("http://localhost:4000/api/v1/generate", data)
       .then((res) => {
