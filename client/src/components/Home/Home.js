@@ -12,6 +12,7 @@ import LoaderSpinner from "../Loader/LoaderSpinner";
 const Home = () => {
   const [generatedResponse, setGeneratedResponse] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [saveQuestion, setSaveQuestion] = useState({});
 
   const pathname = usePathname();
   const pathParts = pathname.split("/");
@@ -83,6 +84,15 @@ const Home = () => {
       .post("http://localhost:4000/api/v1/generate", data)
       .then((res) => {
         setGeneratedResponse(res.data.data);
+        const saveQuestionData = {
+          questionCount,
+          language,
+          content,
+          difficulty,
+          versionCount,
+          generateOutput: res.data.data,
+        };
+        setSaveQuestion(saveQuestionData);
         setLoading(false);
         toast.success("Generate successful");
       })
@@ -179,7 +189,10 @@ const Home = () => {
           </div>
         </form>
         <div className="rounded-lg">
-          <Output generatedResponse={generatedResponse} />
+          <Output
+            generatedResponse={generatedResponse}
+            saveQuestion={saveQuestion}
+          />
         </div>
       </div>
     </div>
