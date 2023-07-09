@@ -119,14 +119,9 @@ const Home = () => {
     "Swedish",
     "Turkish",
     "Vietnamese",
+    "Bangla",
   ];
-  const levelOptions = [
-    "Nursery",
-    "Elementary School",
-    "Middle School",
-    "High School",
-    "University",
-  ];
+  const levelOptions = ["Beginner", "Medium", "Advance", "Hard"];
   const difficultyOptions = ["Easy", "Average", "Above Average", "Difficult"];
   const numberOfVersions = [1, 2, 3];
 
