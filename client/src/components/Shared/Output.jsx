@@ -7,6 +7,8 @@ import { AiOutlineSave } from "react-icons/ai";
 import { ContentState, EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "../../app/customEditorClassName.css";
+import ChatLoader from "../ChatgptLoader/ChatLoader";
+import "../Shared/Output.module.css";
 
 const DynamicEditor = dynamic(
   () => import("react-draft-wysiwyg").then((module) => module.Editor),
@@ -15,7 +17,7 @@ const DynamicEditor = dynamic(
   }
 );
 
-const Output = ({ generatedResponse }) => {
+const Output = ({ generatedResponse, chatGptLoading }) => {
   const [editorState, setEditorState] = useState(null);
   const [title, setTitle] = useState("");
 
@@ -39,7 +41,6 @@ const Output = ({ generatedResponse }) => {
   const handleChange = (event) => {
     setTitle(event.target.value);
   };
-  
 
   const handleSave = () => {
     // console.log(title)
@@ -94,14 +95,21 @@ const Output = ({ generatedResponse }) => {
       </div>
 
       {/* Third Row */}
-      <div className="flex items-center mt-4">
-        <DynamicEditor
-          editorState={editorState}
-          wrapperClassName="wrapperClassName"
-          editorClassName="customEditorClassName"
-          toolbarClassName="customToolbarClassName"
-          onEditorStateChange={onEditorStateChange}
-        />
+      <div className="editor-container">
+        {chatGptLoading && (
+          <div className="editor-overlay">
+            <ChatLoader />
+          </div>
+        )}
+        <div className="editor-wrapper">
+          <DynamicEditor
+            editorState={editorState}
+            wrapperClassName="customEditorWrapper"
+            editorClassName="customEditorClassName"
+            toolbarClassName="customToolbarClassName"
+            onEditorStateChange={onEditorStateChange}
+          />
+        </div>
       </div>
     </div>
   );
