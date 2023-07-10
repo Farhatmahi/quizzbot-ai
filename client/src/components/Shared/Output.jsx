@@ -48,7 +48,7 @@ const Output = ({ generatedResponse, chatGptLoading }) => {
   };
 
   return (
-    <div className="flex flex-col mb-5">
+    <div className="flex flex-col mb-5 w-full">
       {/* First Row */}
       <div className="flex justify-between">
         <span className="text-lg font-bold">Generated Questions</span>

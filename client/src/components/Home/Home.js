@@ -119,16 +119,21 @@ const Home = () => {
     "Swedish",
     "Turkish",
     "Vietnamese",
-    "Bangla",
   ];
-  const levelOptions = ["Beginner", "Medium", "Advance", "Hard"];
+  const levelOptions = [
+    "Nursery",
+    "Elementary School",
+    "Middle School",
+    "High School",
+    "University",
+  ];
   const difficultyOptions = ["Easy", "Average", "Above Average", "Difficult"];
   const numberOfVersions = [1, 2, 3];
 
   return (
     <div className="mx-8">
-      <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-16 mt-10">
-        <form onSubmit={handleSubmit}>
+      <div className="flex flex-col md:flex-row gap-10 mt-10">
+        <form onSubmit={handleSubmit} className="w-full md:w-2/5">
           <div>
             {format !== "lesson-planer" &&
               format !== "project-ideas" &&
@@ -187,12 +192,12 @@ const Home = () => {
             )}
           </div>
         </form>
-        <div className="rounded-lg">
+        <div className="rounded-lg  w-full md:w-3/5">
           <Output
             generatedResponse={generatedResponse}
             chatGptLoading={chatGptLoading}
           />
-           {/* Show the ChatGpt loader */}
+          {/* Show the ChatGpt loader */}
         </div>
       </div>
     </div>
