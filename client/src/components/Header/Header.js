@@ -34,9 +34,7 @@ const Header = ({ open, setOpen }) => {
         <div className="rounded-full bg-gradient-to-r from-[#FC495F] to-[#FFc371] p-1">
           {user?.user?.photoURL === null ? (
             <Image
-              src={
-                "https://img.uxwing.com/wp-content/themes/uxwing/download/peoples-avatars-thoughts/corporate-user-icon.png"
-              }
+              src={"https://img.freepik.com/free-icon/user_318-219687.jpg"}
               alt="Avater Image"
               width={50}
               height={50}

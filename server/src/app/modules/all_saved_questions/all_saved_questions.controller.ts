@@ -52,6 +52,25 @@ const getAllSavedQuestions = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
+const getSingleSavedQuestion = catchAsync(
+  async (req: Request, res: Response) => {
+    const questionId = req.params.questionId
+
+    // console.log(questionId)
+
+    const result = await AllSavedQuestionsService.getSingleSavedQuestion(
+      questionId
+    )
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Question retrieved successfully',
+      data: result,
+    })
+  }
+)
+
 const updateSingleSavedQuestion = catchAsync(
   async (req: Request, res: Response) => {
     const questionId = req.params.questionId
@@ -92,6 +111,7 @@ const deleteSingleSavedQuestion = catchAsync(
 export const AllSavedQuestionsController = {
   getAllSavedQuestions,
   addSavedQuestion,
+  getSingleSavedQuestion,
   updateSingleSavedQuestion,
   deleteSingleSavedQuestion,
 }

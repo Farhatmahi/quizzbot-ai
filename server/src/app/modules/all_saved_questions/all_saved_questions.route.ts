@@ -6,11 +6,14 @@ import { AllSavedQuestionsValidation } from './all_saved_questions.validation'
 const router = express.Router()
 
 router.get('/:userId', AllSavedQuestionsController.getAllSavedQuestions)
+router.get('/single-question/:questionId', AllSavedQuestionsController.getSingleSavedQuestion)
+
 router.post(
   '/:userId',
   validateRequest(AllSavedQuestionsValidation.createSavedQuestionZodSchema),
   AllSavedQuestionsController.addSavedQuestion
 )
+
 
 router.patch(
   '/:questionId',

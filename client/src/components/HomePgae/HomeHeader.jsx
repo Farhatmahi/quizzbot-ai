@@ -218,7 +218,7 @@ const HomeHeader = () => {
                           href="/"
                           aria-label="Our product"
                           class="font-bold tracking-wide
-                           text-gray-900 transition-colors duration-200 hover:text-purple-400"
+                           text-gray-900 transition-colors duration-200 "
                         >
                           Home
                         </Link>
@@ -227,7 +227,7 @@ const HomeHeader = () => {
                         <Link
                           href="/dashboard"
                           aria-label="Our product"
-                          class="font-bold tracking-wide text-gray-900 transition-colors duration-200 hover:text-purple-400"
+                          class="font-bold tracking-wide text-gray-900 transition-colors duration-200 "
                         >
                           Dashboard
                         </Link>
@@ -237,7 +237,7 @@ const HomeHeader = () => {
                         <Link
                           href="/marketplace"
                           aria-label="About us"
-                          class="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-purple-400"
+                          class="font-medium tracking-wide text-gray-900 transition-colors duration-200 "
                         >
                           Marketplace
                         </Link>
@@ -246,7 +246,7 @@ const HomeHeader = () => {
                         <Link
                           href="/about"
                           aria-label="About us"
-                          class="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-purple-400"
+                          class="font-bold tracking-wide text-gray-900 transition-colors duration-200 "
                         >
                           About
                         </Link>
