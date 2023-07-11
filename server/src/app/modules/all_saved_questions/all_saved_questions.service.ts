@@ -64,6 +64,12 @@ const getAllSavedQuestions = async (userId: string) => {
   return allSavedQuestions
 }
 
+const getSingleSavedQuestion = async (questionId: string) => {
+  const question = await SingleSavedQuestion.findById(questionId)
+  // console.log(question)
+  return question
+}
+
 const updateSingleSavedQuestion = async (
   userId: string,
   questionId: string,
@@ -99,32 +105,33 @@ const deleteSingleSavedQuestion = async (
 ) => {
   const allSavedQuestion = await AllSavedQuestions.findOne({
     user: userId,
-  }).populate('saved_questions');
+  }).populate('saved_questions')
 
   if (!allSavedQuestion) {
-    throw new Error('Question not found');
+    throw new Error('Question not found')
   }
 
   const savedQuestionIndex = allSavedQuestion.saved_questions.findIndex(
-    (question: any) => question._id.equals(new mongoose.Types.ObjectId(questionId))
-  );
+    (question: any) =>
+      question._id.equals(new mongoose.Types.ObjectId(questionId))
+  )
 
   if (savedQuestionIndex === -1) {
-    throw new Error('Question not found');
+    throw new Error('Question not found')
   }
 
   // Remove the saved question from the array
-  allSavedQuestion.saved_questions.splice(savedQuestionIndex, 1);
+  allSavedQuestion.saved_questions.splice(savedQuestionIndex, 1)
 
-  await allSavedQuestion.save();
+  await allSavedQuestion.save()
 
-  return 'Saved question deleted successfully';
-};
-
+  return 'Saved question deleted successfully'
+}
 
 export const AllSavedQuestionsService = {
   addSavedQuestion,
   getAllSavedQuestions,
+  getSingleSavedQuestion,
   updateSingleSavedQuestion,
-  deleteSingleSavedQuestion
+  deleteSingleSavedQuestion,
 }
