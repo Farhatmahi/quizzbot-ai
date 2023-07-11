@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import dynamic from "next/dynamic";
 import { AiOutlineFileWord, AiOutlineFileText } from "react-icons/ai";
 import { MdContentCopy } from "react-icons/md";
@@ -9,6 +9,8 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "../../app/customEditorClassName.css";
 import ChatLoader from "../ChatgptLoader/ChatLoader";
 import "../Shared/Output.module.css";
+import axios from "axios";
+import { AuthContext } from "@/context/AuthProvider";
 
 const DynamicEditor = dynamic(
   () => import("react-draft-wysiwyg").then((module) => module.Editor),
@@ -17,9 +19,13 @@ const DynamicEditor = dynamic(
   }
 );
 
-const Output = ({ generatedResponse, chatGptLoading }) => {
+const Output = ({ generatedResponse, chatGptLoading, saveQuestion }) => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   const [editorState, setEditorState] = useState(null);
   const [title, setTitle] = useState("");
+  const { questionCount, language, content, difficulty, versionCount } =
+    saveQuestion;
 
   useEffect(() => {
     if (generatedResponse) {
@@ -43,8 +49,27 @@ const Output = ({ generatedResponse, chatGptLoading }) => {
   };
 
   const handleSave = () => {
-    // console.log(title)
-    // console.log(generatedResponse)
+    const question = {
+      how_many_questions: questionCount,
+      paste_text: content,
+      language: language,
+      difficulty: difficulty,
+      number_of_sets: versionCount,
+      title: title,
+      generatedText: generatedResponse,
+    };
+
+    axios
+      .post(
+        `http://localhost:4000/api/v1/all-saved-questions/64ad9c2ad018413c2cd226e5`,
+        {
+          question,
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err.message));
   };
 
   return (

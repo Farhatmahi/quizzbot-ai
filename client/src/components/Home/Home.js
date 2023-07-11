@@ -92,7 +92,6 @@ const Home = () => {
           content,
           difficulty,
           versionCount,
-          generateOutput: res.data.data,
         };
         setSaveQuestion(saveQuestionData);
         setLoading(false);
