@@ -98,6 +98,7 @@ const page = () => {
         { user }
       );
       const data = response.data;
+      console.log(data);
     } catch (error) {
       toast.error(error.message);
     }

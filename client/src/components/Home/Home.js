@@ -8,12 +8,11 @@ import axios from "axios";
 import { generatePrompt } from "@/utils/PromptGenerations";
 import { toast } from "react-hot-toast";
 import LoaderSpinner from "../Loader/LoaderSpinner";
-import ChatLoader from "../ChatgptLoader/ChatLoader";
 
 const Home = () => {
   const [generatedResponse, setGeneratedResponse] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [chatGptLoading, setChatGptLoading] = useState(false);
+  const [saveQuestion, setSaveQuestion] = useState({});
 
   const pathname = usePathname();
   const pathParts = pathname.split("/");
@@ -81,20 +80,24 @@ const Home = () => {
     });
 
     const data = { prompt };
-
-    setChatGptLoading(true); // Show the chat GPT loader
-
     axios
       .post("http://localhost:4000/api/v1/generate", data)
       .then((res) => {
         setGeneratedResponse(res.data.data);
+        const saveQuestionData = {
+          questionCount,
+          language,
+          content,
+          difficulty,
+          versionCount,
+          generateOutput: res.data.data,
+        };
+        setSaveQuestion(saveQuestionData);
         setLoading(false);
-        setChatGptLoading(false); // Hide the chat GPT loader
         toast.success("Generate successful");
       })
       .catch((err) => {
         setLoading(false);
-        setChatGptLoading(false); // Hide the chat GPT loader
         toast.error("Error generating response");
       });
   };
@@ -119,21 +122,16 @@ const Home = () => {
     "Swedish",
     "Turkish",
     "Vietnamese",
+    "Bangla",
   ];
-  const levelOptions = [
-    "Nursery",
-    "Elementary School",
-    "Middle School",
-    "High School",
-    "University",
-  ];
+  const levelOptions = ["Beginner", "Medium", "Advance", "Hard"];
   const difficultyOptions = ["Easy", "Average", "Above Average", "Difficult"];
   const numberOfVersions = [1, 2, 3];
 
   return (
     <div className="mx-8">
-      <div className="flex flex-col md:flex-row gap-10 mt-10">
-        <form onSubmit={handleSubmit} className="w-full md:w-2/5">
+      <div className="grid md:grid-cols-2 gap-16 mt-10">
+        <form onSubmit={handleSubmit}>
           <div>
             {format !== "lesson-planer" &&
               format !== "project-ideas" &&
@@ -145,9 +143,7 @@ const Home = () => {
                 />
               )}
             <div className="flex flex-col mb-4">
-              {format === "project-ideas" ||
-              format === "study-points" ||
-              format === "lesson-planer" ? (
+              {format === "project-ideas" || format === "study-points" ? (
                 <label className="text-sm">Topic Name?</label>
               ) : (
                 <label className="text-sm">Paste Your Text?</label>
@@ -192,12 +188,11 @@ const Home = () => {
             )}
           </div>
         </form>
-        <div className="rounded-lg  w-full md:w-3/5">
+        <div className="rounded-lg">
           <Output
             generatedResponse={generatedResponse}
-            chatGptLoading={chatGptLoading}
+            saveQuestion={saveQuestion}
           />
-          {/* Show the ChatGpt loader */}
         </div>
       </div>
     </div>
