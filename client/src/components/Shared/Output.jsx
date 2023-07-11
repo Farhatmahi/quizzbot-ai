@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { AiOutlineFileWord, AiOutlineFileText } from "react-icons/ai";
 import { MdContentCopy } from "react-icons/md";
@@ -7,8 +7,8 @@ import { AiOutlineSave } from "react-icons/ai";
 import { ContentState, EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "../../app/customEditorClassName.css";
-import axios from "axios";
-import { AuthContext } from "@/context/AuthProvider";
+import ChatLoader from "../ChatgptLoader/ChatLoader";
+import "../Shared/Output.module.css";
 
 const DynamicEditor = dynamic(
   () => import("react-draft-wysiwyg").then((module) => module.Editor),
@@ -17,19 +17,9 @@ const DynamicEditor = dynamic(
   }
 );
 
-const Output = ({ generatedResponse, saveQuestion }) => {
+const Output = ({ generatedResponse, chatGptLoading }) => {
   const [editorState, setEditorState] = useState(null);
   const [title, setTitle] = useState("");
-
-  const { user } = useContext(AuthContext);
-  const {
-    questionCount,
-    language,
-    content,
-    difficulty,
-    versionCount,
-    generateOutput,
-  } = saveQuestion;
 
   useEffect(() => {
     if (generatedResponse) {
@@ -52,32 +42,13 @@ const Output = ({ generatedResponse, saveQuestion }) => {
     setTitle(event.target.value);
   };
 
-  const handleSave = async (user) => {
-    const question = {
-      how_many_questions: questionCount,
-      paste_text: content,
-      language: language,
-      difficulty: difficulty,
-      number_of_sets: versionCount,
-      title: title,
-      generatedText: generateOutput,
-    };
-
-    const userId = user?.uid;
-
-    axios
-      .post("http://localhost:4000/api/v1/all-saved-questions/userId", {
-        question,
-        userId,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err.message));
+  const handleSave = () => {
+    // console.log(title)
+    // console.log(generatedResponse)
   };
 
   return (
-    <div className="flex flex-col mb-5">
+    <div className="flex flex-col mb-5 w-full">
       {/* First Row */}
       <div className="flex justify-between">
         <span className="text-lg font-bold">Generated Questions</span>
@@ -124,14 +95,21 @@ const Output = ({ generatedResponse, saveQuestion }) => {
       </div>
 
       {/* Third Row */}
-      <div className="flex items-center mt-4">
-        <DynamicEditor
-          editorState={editorState}
-          wrapperClassName="wrapperClassName"
-          editorClassName="customEditorClassName"
-          toolbarClassName="customToolbarClassName"
-          onEditorStateChange={onEditorStateChange}
-        />
+      <div className="editor-container">
+        {chatGptLoading && (
+          <div className="editor-overlay">
+            <ChatLoader />
+          </div>
+        )}
+        <div className="editor-wrapper">
+          <DynamicEditor
+            editorState={editorState}
+            wrapperClassName="customEditorWrapper"
+            editorClassName="customEditorClassName"
+            toolbarClassName="customToolbarClassName"
+            onEditorStateChange={onEditorStateChange}
+          />
+        </div>
       </div>
     </div>
   );
