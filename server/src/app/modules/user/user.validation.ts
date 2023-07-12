@@ -16,4 +16,12 @@ const createUserZodSchema = z.object({
   }),
 })
 
-export const UserValidation = { createUserZodSchema }
+const getUserZodSchema = z.object({
+  body: z.object({
+    email: z.string({
+      required_error: 'Email is required',
+    }),
+  }),
+})
+
+export const UserValidation = { createUserZodSchema, getUserZodSchema }

@@ -11,4 +11,10 @@ router.post(
   UserController.createUser
 )
 
+router.post(
+  '/get-user',
+  validateRequest(UserValidation.getUserZodSchema),
+  UserController.getUser
+)
+
 export const UserRoute = router

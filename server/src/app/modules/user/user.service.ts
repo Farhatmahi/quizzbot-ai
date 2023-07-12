@@ -23,4 +23,12 @@ const createUser = async (user: IUser): Promise<IUser | null> => {
   return createdUser
 }
 
-export const UserService = { createUser }
+const getUser = async (email: string): Promise<IUser | null> => {
+  const user = await User.findOne({ email })
+  if (!user) {
+    throw new ApiError(400, 'User not found')
+  }
+  return user
+}
+
+export const UserService = { createUser, getUser }
