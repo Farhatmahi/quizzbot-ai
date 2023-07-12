@@ -4,7 +4,12 @@ import { User } from './user.model'
 import ApiError from '../../../errors/ApiError'
 
 const createUser = async (user: IUser): Promise<IUser | null> => {
-  const { password } = user
+  const { email, password } = user
+
+  const existingUser = await User.findOne({ email })
+  if (existingUser) {
+    throw new ApiError(400, 'Email already exists')
+  }
 
   const salt = await bcrypt.genSalt()
   const passwordHash = await bcrypt.hash(password, salt)
@@ -18,4 +23,12 @@ const createUser = async (user: IUser): Promise<IUser | null> => {
   return createdUser
 }
 
-export const UserService = { createUser }
+const getUser = async (email: string): Promise<IUser | null> => {
+  const user = await User.findOne({ email })
+  if (!user) {
+    throw new ApiError(400, 'User not found')
+  }
+  return user
+}
+
+export const UserService = { createUser, getUser }
