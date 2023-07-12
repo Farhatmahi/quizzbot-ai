@@ -1,14 +1,15 @@
 import mongoose from 'mongoose'
 import app from './app'
 import config from './config'
-import { errorLogger, successLogger } from './shared/logger'
+// import { errorLogger, successLogger } from './shared/logger'
 import { Server } from 'http'
 
 let server: Server
 
 /* This code is setting up a listener for uncaught exception. It's a synchronous process */
 process.on('uncaughtException', error => {
-  errorLogger.error(error)
+  console.log(error)
+  // errorLogger.error(error)
   process.exit(1)
 })
 
@@ -16,7 +17,8 @@ process.on('uncaughtException', error => {
 process.on('unhandledRejection', error => {
   if (server) {
     server.close(() => {
-      errorLogger.error(error)
+      // errorLogger.error(error)
+      console.log(error)
       process.exit(1)
     })
   }
@@ -39,7 +41,7 @@ and needs to be scaled down or updated. */
 async function databaseConnection() {
   try {
     await mongoose.connect(config.database_string as string)
-    // successLogger.info('Database connected successfully')\
+    // successLogger.info('Database connected successfully')
     console.log('Database connected successfully')
 
     server = app.listen(config.port, () => {
