@@ -87,7 +87,7 @@ const page = () => {
     const user = {
       email: userData?.email,
       password: password,
-      avatar: "",
+      avatar: userData?.photoURL,
       membership: "",
       transaction: "sth23yhaqeghvc",
     };

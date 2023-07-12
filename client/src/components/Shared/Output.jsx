@@ -21,7 +21,7 @@ const DynamicEditor = dynamic(
 
 const Output = ({ generatedResponse, chatGptLoading, saveQuestion }) => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+
   const [editorState, setEditorState] = useState(null);
   const [title, setTitle] = useState("");
   const { questionCount, language, content, difficulty, versionCount } =
