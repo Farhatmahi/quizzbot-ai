@@ -11,6 +11,7 @@ import ChatLoader from "../ChatgptLoader/ChatLoader";
 import "../Shared/Output.module.css";
 import axios from "axios";
 import { AuthContext } from "@/context/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const DynamicEditor = dynamic(
   () => import("react-draft-wysiwyg").then((module) => module.Editor),
@@ -48,7 +49,7 @@ const Output = ({ generatedResponse, chatGptLoading, saveQuestion }) => {
     setTitle(event.target.value);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const question = {
       how_many_questions: questionCount,
       paste_text: content,
@@ -59,17 +60,35 @@ const Output = ({ generatedResponse, chatGptLoading, saveQuestion }) => {
       generatedText: generatedResponse,
     };
 
-    axios
-      .post(
-        `http://localhost:4000/api/v1/all-saved-questions/64ad9c2ad018413c2cd226e5`,
+    try {
+      const email = user?.email;
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/users/get-user",
+        { email }
+      );
+      const data = await response.data;
+      const userID = data?.data?._id;
+
+      saveToDatabaseSavedQuestion(question, userID);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const saveToDatabaseSavedQuestion = async (question, userID) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:4000/api/v1/all-saved-questions/${userID}`,
         {
           question,
         }
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err.message));
+      );
+      const data = await response.data;
+      console.log(data);
+      toast.success(data.message);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (

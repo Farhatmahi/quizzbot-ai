@@ -1,6 +1,45 @@
+"use client";
+import axios from "axios";
 import SavedQuestionTable from "./SavedQuestionTable";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "@/context/AuthProvider";
 
 const SavedQuestion = () => {
+  const [savedQuestion, setSavedQuestion] = useState([]);
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    const handleAllSavedQuestions = async () => {
+      try {
+        const email = user?.email;
+        const response = await axios.post(
+          "http://localhost:4000/api/v1/users/get-user",
+          { email }
+        );
+        const data = await response.data;
+        const userID = data?.data?._id;
+        console.log(userID);
+        saveToDatabaseSavedQuestion(userID);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    const saveToDatabaseSavedQuestion = async (userID) => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4000/api/v1/all-saved-questions/${userID}`
+        );
+        const data = await response.data;
+        setSavedQuestion(data?.data?.saved_questions);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+
+    handleAllSavedQuestions();
+  }, [user]);
+
   return (
     <section className="border-2 border-[#EEE]  rounded-xl py-5 mt-5 mr-8 ml-8 mb-10 min-h-screen">
       {/* Saved Question Text */}
@@ -28,7 +67,7 @@ const SavedQuestion = () => {
       </div> */}
       {/* </div> */}
 
-      <SavedQuestionTable />
+      <SavedQuestionTable savedQuestion={savedQuestion} />
     </section>
   );
 };
