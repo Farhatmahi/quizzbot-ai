@@ -19,12 +19,13 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
 
 const getUser = catchAsync(async (req: Request, res: Response) => {
   const { email } = req.body
+
   const result = await UserService.getUser(email)
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'User created successfully',
+    message: 'User get successfully',
     data: result,
   })
 })

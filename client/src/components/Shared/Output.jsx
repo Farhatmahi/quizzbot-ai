@@ -7,8 +7,11 @@ import { AiOutlineSave } from "react-icons/ai";
 import { ContentState, EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "../../app/customEditorClassName.css";
+import ChatLoader from "../ChatgptLoader/ChatLoader";
+import "../Shared/Output.module.css";
 import axios from "axios";
 import { AuthContext } from "@/context/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const DynamicEditor = dynamic(
   () => import("react-draft-wysiwyg").then((module) => module.Editor),
@@ -17,19 +20,13 @@ const DynamicEditor = dynamic(
   }
 );
 
-const Output = ({ generatedResponse, saveQuestion }) => {
+const Output = ({ generatedResponse, chatGptLoading, saveQuestion }) => {
+  const { user } = useContext(AuthContext);
+
   const [editorState, setEditorState] = useState(null);
   const [title, setTitle] = useState("");
-
-  const { user } = useContext(AuthContext);
-  const {
-    questionCount,
-    language,
-    content,
-    difficulty,
-    versionCount,
-    generateOutput,
-  } = saveQuestion;
+  const { questionCount, language, content, difficulty, versionCount } =
+    saveQuestion;
 
   useEffect(() => {
     if (generatedResponse) {
@@ -52,7 +49,7 @@ const Output = ({ generatedResponse, saveQuestion }) => {
     setTitle(event.target.value);
   };
 
-  const handleSave = async (user) => {
+  const handleSave = async () => {
     const question = {
       how_many_questions: questionCount,
       paste_text: content,
@@ -60,24 +57,42 @@ const Output = ({ generatedResponse, saveQuestion }) => {
       difficulty: difficulty,
       number_of_sets: versionCount,
       title: title,
-      generatedText: generateOutput,
+      generatedText: generatedResponse,
     };
 
-    const userId = user?.uid;
+    try {
+      const email = user?.email;
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/users/get-user",
+        { email }
+      );
+      const data = await response.data;
+      const userID = data?.data?._id;
 
-    axios
-      .post("http://localhost:4000/api/v1/all-saved-questions/userId", {
-        question,
-        userId,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err.message));
+      saveToDatabaseSavedQuestion(question, userID);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const saveToDatabaseSavedQuestion = async (question, userID) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:4000/api/v1/all-saved-questions/${userID}`,
+        {
+          question,
+        }
+      );
+      const data = await response.data;
+      console.log(data);
+      toast.success(data.message);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (
-    <div className="flex flex-col mb-5">
+    <div className="flex flex-col mb-5 w-full">
       {/* First Row */}
       <div className="flex justify-between">
         <span className="text-lg font-bold">Generated Questions</span>
@@ -124,14 +139,21 @@ const Output = ({ generatedResponse, saveQuestion }) => {
       </div>
 
       {/* Third Row */}
-      <div className="flex items-center mt-4">
-        <DynamicEditor
-          editorState={editorState}
-          wrapperClassName="wrapperClassName"
-          editorClassName="customEditorClassName"
-          toolbarClassName="customToolbarClassName"
-          onEditorStateChange={onEditorStateChange}
-        />
+      <div className="editor-container">
+        {chatGptLoading && (
+          <div className="editor-overlay">
+            <ChatLoader />
+          </div>
+        )}
+        <div className="editor-wrapper">
+          <DynamicEditor
+            editorState={editorState}
+            wrapperClassName="customEditorWrapper"
+            editorClassName="customEditorClassName"
+            toolbarClassName="customToolbarClassName"
+            onEditorStateChange={onEditorStateChange}
+          />
+        </div>
       </div>
     </div>
   );

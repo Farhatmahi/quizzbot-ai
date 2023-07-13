@@ -3,16 +3,42 @@ import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "@/context/AuthProvider";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const SocialMediaLogin = ({ children }) => {
   const { signInWithGoogle } = useContext(AuthContext);
   const router = useRouter();
   const handleGoogleLogin = () => {
     signInWithGoogle().then((res) => {
-      const user = res.user;
+      const userData = res.user;
+
+      saveToDatabaseUser(userData);
 
       router.push("/dashboard");
     });
+  };
+
+  const saveToDatabaseUser = async (userData) => {
+    const user = {
+      email: userData?.email,
+      password: "",
+      avatar: userData?.photoURL,
+      membership: "",
+      transaction: "sth23yhaqeghvc",
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/users/create-user",
+        { user }
+      );
+      const data = response.data;
+      console.log(data);
+      toast.success(data.message);
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (

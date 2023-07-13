@@ -13,6 +13,7 @@ const Home = () => {
   const [generatedResponse, setGeneratedResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const [saveQuestion, setSaveQuestion] = useState({});
+  const [chatGptLoading, setChatGptLoading] = useState(false);
 
   const pathname = usePathname();
   const pathParts = pathname.split("/");
@@ -80,6 +81,7 @@ const Home = () => {
     });
 
     const data = { prompt };
+    setChatGptLoading(true);
     axios
       .post("http://localhost:4000/api/v1/generate", data)
       .then((res) => {
@@ -90,14 +92,15 @@ const Home = () => {
           content,
           difficulty,
           versionCount,
-          generateOutput: res.data.data,
         };
         setSaveQuestion(saveQuestionData);
         setLoading(false);
+        setChatGptLoading(false);
         toast.success("Generate successful");
       })
       .catch((err) => {
         setLoading(false);
+        setChatGptLoading(false);
         toast.error("Error generating response");
       });
   };
@@ -130,7 +133,7 @@ const Home = () => {
 
   return (
     <div className="mx-8">
-      <div className="grid md:grid-cols-2 gap-16 mt-10">
+      <div className="flex flex-col md:flex-row gap-10 mt-10">
         <form onSubmit={handleSubmit}>
           <div>
             {format !== "lesson-planer" &&
@@ -188,10 +191,11 @@ const Home = () => {
             )}
           </div>
         </form>
-        <div className="rounded-lg">
+        <div className="rounded-lg  w-full">
           <Output
             generatedResponse={generatedResponse}
             saveQuestion={saveQuestion}
+            chatGptLoading={chatGptLoading}
           />
         </div>
       </div>

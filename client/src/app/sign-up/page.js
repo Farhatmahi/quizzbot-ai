@@ -87,7 +87,7 @@ const page = () => {
     const user = {
       email: userData?.email,
       password: password,
-      avatar: "",
+      avatar: userData?.photoURL,
       membership: "",
       transaction: "sth23yhaqeghvc",
     };
@@ -98,7 +98,7 @@ const page = () => {
         { user }
       );
       const data = response.data;
-      console.log(data);
+      toast.success(data.message);
     } catch (error) {
       toast.error(error.message);
     }
