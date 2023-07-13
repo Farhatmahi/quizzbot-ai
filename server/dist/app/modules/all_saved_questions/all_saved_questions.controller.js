@@ -60,8 +60,8 @@ const getSingleSavedQuestion = (0, catchAsync_1.default)((req, res) => __awaiter
 }));
 const updateSingleSavedQuestion = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const questionId = req.params.questionId;
-    const { userId, text } = req.body;
-    const result = yield all_saved_questions_service_1.AllSavedQuestionsService.updateSingleSavedQuestion(userId, questionId, text);
+    const { userId, title, generatedText } = req.body;
+    const result = yield all_saved_questions_service_1.AllSavedQuestionsService.updateSingleSavedQuestion(userId, questionId, title, generatedText);
     (0, sendReponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
