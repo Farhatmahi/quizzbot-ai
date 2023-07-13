@@ -74,11 +74,12 @@ const getSingleSavedQuestion = catchAsync(
 const updateSingleSavedQuestion = catchAsync(
   async (req: Request, res: Response) => {
     const questionId = req.params.questionId
-    const { userId, text } = req.body
+    const { userId, title, generatedText } = req.body
     const result = await AllSavedQuestionsService.updateSingleSavedQuestion(
       userId,
       questionId,
-      text
+      title,
+      generatedText
     )
 
     sendResponse(res, {
