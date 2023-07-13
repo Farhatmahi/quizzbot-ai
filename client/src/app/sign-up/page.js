@@ -94,7 +94,7 @@ const page = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/v1/users/create-user",
+        "https://ai-quizzbot-farhatmahi.vercel.app/api/v1/users/create-user",
         { user }
       );
       const data = response.data;

@@ -85,6 +85,7 @@ const updateSingleSavedQuestion = (userId, questionId, text) => __awaiter(void 0
     return savedQuestion;
 });
 const deleteSingleSavedQuestion = (userId, questionId) => __awaiter(void 0, void 0, void 0, function* () {
+    // console.log(`userId : ${userId}, question id : ${questionId}`)
     const allSavedQuestion = yield all_saved_questions_model_1.default.findOne({
         user: userId,
     }).populate('saved_questions');

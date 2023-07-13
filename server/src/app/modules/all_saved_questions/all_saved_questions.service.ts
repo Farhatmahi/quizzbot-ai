@@ -103,6 +103,7 @@ const deleteSingleSavedQuestion = async (
   userId: string,
   questionId: string
 ) => {
+  // console.log(`userId : ${userId}, question id : ${questionId}`)
   const allSavedQuestion = await AllSavedQuestions.findOne({
     user: userId,
   }).populate('saved_questions')

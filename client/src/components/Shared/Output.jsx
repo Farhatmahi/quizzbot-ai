@@ -63,12 +63,11 @@ const Output = ({ generatedResponse, chatGptLoading, saveQuestion }) => {
     try {
       const email = user?.email;
       const response = await axios.post(
-        "http://localhost:4000/api/v1/users/get-user",
+        "https://ai-quizzbot-farhatmahi.vercel.app/api/v1/users/get-user",
         { email }
       );
       const data = await response.data;
       const userID = data?.data?._id;
-
       saveToDatabaseSavedQuestion(question, userID);
     } catch (err) {
       console.log(err);
@@ -76,9 +75,13 @@ const Output = ({ generatedResponse, chatGptLoading, saveQuestion }) => {
   };
 
   const saveToDatabaseSavedQuestion = async (question, userID) => {
+    if (title === "") {
+      toast.error("Please enter a title");
+      return;
+    }
     try {
       const response = await axios.post(
-        `http://localhost:4000/api/v1/all-saved-questions/${userID}`,
+        `https://ai-quizzbot-farhatmahi.vercel.app/api/v1/all-saved-questions/${userID}`,
         {
           question,
         }
@@ -122,6 +125,7 @@ const Output = ({ generatedResponse, chatGptLoading, saveQuestion }) => {
       <div className="flex justify-between items-center gap-6 mt-12 mb-6">
         <div className="flex flex-col flex-grow">
           <input
+            required
             onChange={handleChange}
             type="text"
             name="saveGeneratedQuestion"
@@ -140,11 +144,6 @@ const Output = ({ generatedResponse, chatGptLoading, saveQuestion }) => {
 
       {/* Third Row */}
       <div className="editor-container">
-        {chatGptLoading && (
-          <div className="editor-overlay">
-            <ChatLoader />
-          </div>
-        )}
         <div className="editor-wrapper">
           <DynamicEditor
             editorState={editorState}

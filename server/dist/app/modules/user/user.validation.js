@@ -17,4 +17,11 @@ const createUserZodSchema = zod_1.z.object({
         }),
     }),
 });
-exports.UserValidation = { createUserZodSchema };
+const getUserZodSchema = zod_1.z.object({
+    body: zod_1.z.object({
+        email: zod_1.z.string({
+            required_error: 'Email is required',
+        }),
+    }),
+});
+exports.UserValidation = { createUserZodSchema, getUserZodSchema };

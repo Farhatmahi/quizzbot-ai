@@ -17,7 +17,7 @@ const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
 const user_service_1 = require("./user.service");
 const http_status_1 = __importDefault(require("http-status"));
 const sendReponse_1 = __importDefault(require("../../../shared/sendReponse"));
-const createUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const createUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password, avatar, membership, transaction } = req.body.user;
     const user = { email, password, avatar, membership, transaction };
     const result = yield user_service_1.UserService.createUser(user);
@@ -27,6 +27,15 @@ const createUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 
         message: 'User created successfully',
         data: result,
     });
-    next();
 }));
-exports.UserController = { createUser };
+const getUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email } = req.body;
+    const result = yield user_service_1.UserService.getUser(email);
+    (0, sendReponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'User get successfully',
+        data: result,
+    });
+}));
+exports.UserController = { createUser, getUser };
