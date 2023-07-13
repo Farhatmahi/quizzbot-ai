@@ -73,7 +73,8 @@ const getSingleSavedQuestion = async (questionId: string) => {
 const updateSingleSavedQuestion = async (
   userId: string,
   questionId: string,
-  text: string
+  title: string,
+  generatedText: string
 ) => {
   const allSavedQuestion = await AllSavedQuestions.findOne({
     user: userId,
@@ -93,8 +94,10 @@ const updateSingleSavedQuestion = async (
 
   // console.log(savedQuestion)
 
-  savedQuestion.generatedText = text
-  await allSavedQuestion.save()
+  savedQuestion.title = title
+  savedQuestion.generatedText = generatedText
+  // await allSavedQuestion.save()
+  await savedQuestion.save() 
 
   return savedQuestion
 }
