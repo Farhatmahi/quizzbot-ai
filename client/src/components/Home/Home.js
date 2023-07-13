@@ -130,7 +130,7 @@ const Home = () => {
   return (
     <div className="mx-8">
       <div className="flex flex-col md:flex-row gap-10 mt-10">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="w-2/3">
           <div>
             {format !== "lesson-planer" &&
               format !== "project-ideas" &&
