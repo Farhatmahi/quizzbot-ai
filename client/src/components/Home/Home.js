@@ -13,7 +13,6 @@ const Home = () => {
   const [generatedResponse, setGeneratedResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const [saveQuestion, setSaveQuestion] = useState({});
-  const [chatGptLoading, setChatGptLoading] = useState(false);
 
   const pathname = usePathname();
   const pathParts = pathname.split("/");
@@ -81,9 +80,8 @@ const Home = () => {
     });
 
     const data = { prompt };
-    setChatGptLoading(true);
     axios
-      .post("http://localhost:4000/api/v1/generate", data)
+      .post("https://ai-quizzbot-farhatmahi.vercel.app/api/v1/generate", data)
       .then((res) => {
         setGeneratedResponse(res.data.data);
         const saveQuestionData = {
@@ -95,12 +93,10 @@ const Home = () => {
         };
         setSaveQuestion(saveQuestionData);
         setLoading(false);
-        setChatGptLoading(false);
         toast.success("Generate successful");
       })
       .catch((err) => {
         setLoading(false);
-        setChatGptLoading(false);
         toast.error("Error generating response");
       });
   };
@@ -195,7 +191,6 @@ const Home = () => {
           <Output
             generatedResponse={generatedResponse}
             saveQuestion={saveQuestion}
-            chatGptLoading={chatGptLoading}
           />
         </div>
       </div>

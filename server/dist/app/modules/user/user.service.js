@@ -17,7 +17,11 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const user_model_1 = require("./user.model");
 const ApiError_1 = __importDefault(require("../../../errors/ApiError"));
 const createUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
-    const { password } = user;
+    const { email, password } = user;
+    const existingUser = yield user_model_1.User.findOne({ email });
+    if (existingUser) {
+        throw new ApiError_1.default(400, 'Email already exists');
+    }
     const salt = yield bcrypt_1.default.genSalt();
     const passwordHash = yield bcrypt_1.default.hash(password, salt);
     user.password = passwordHash;
@@ -27,4 +31,11 @@ const createUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
     }
     return createdUser;
 });
-exports.UserService = { createUser };
+const getUser = (email) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield user_model_1.User.findOne({ email });
+    if (!user) {
+        throw new ApiError_1.default(400, 'User not found');
+    }
+    return user;
+});
+exports.UserService = { createUser, getUser };

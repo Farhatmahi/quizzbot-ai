@@ -10,4 +10,5 @@ const user_controller_1 = require("./user.controller");
 const user_validation_1 = require("./user.validation");
 const router = express_1.default.Router();
 router.post('/create-user', (0, validateRequest_1.default)(user_validation_1.UserValidation.createUserZodSchema), user_controller_1.UserController.createUser);
+router.post('/get-user', (0, validateRequest_1.default)(user_validation_1.UserValidation.getUserZodSchema), user_controller_1.UserController.getUser);
 exports.UserRoute = router;

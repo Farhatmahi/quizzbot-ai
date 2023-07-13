@@ -2,13 +2,19 @@
 import { IoDocumentsOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ImCross } from "react-icons/im";
 import { toast } from "react-hot-toast";
+import axios from "axios";
+import { AuthContext } from "@/context/AuthProvider";
 
-const SavedQuestionTable = ({ savedQuestion }) => {
+const SavedQuestionTable = ({ loading, savedQuestion }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const { user } = useContext(AuthContext);
+  const email = user?.email;
   const [saveModalQuestion, setSaveModalQuestion] = useState({});
+
+  console.log(savedQuestion);
 
   const openModal = (question) => {
     setModalOpen(true);
@@ -23,8 +29,31 @@ const SavedQuestionTable = ({ savedQuestion }) => {
   const handleClick = () => {
     router.push("/home");
   };
-  const handleDelete = () => {
-    toast.success("This row data has been deleted!");
+
+  const handleDelete = async (id) => {
+    const response = await axios.post(
+      "https://ai-quizzbot-farhatmahi.vercel.app/api/v1/users/get-user",
+      { email }
+    );
+
+    const data = await response.data;
+    const userId = {
+      userId: data?.data?._id,
+    };
+
+    try {
+      const response = await axios.delete(
+        `https://ai-quizzbot-farhatmahi.vercel.app/api/v1/all-saved-questions/${id}`,
+        { data: userId }
+      );
+      const data = await response.data;
+
+      toast.success(data.data);
+
+      // console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -82,6 +111,7 @@ const SavedQuestionTable = ({ savedQuestion }) => {
                     </th>
                   </tr>
                 </thead>
+
                 <tbody class="bg-white divide-y divide-gray-200  ">
                   {savedQuestion?.map((question) => (
                     <tr>
@@ -112,7 +142,7 @@ const SavedQuestionTable = ({ savedQuestion }) => {
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
-                                stroke-width="1.5"
+                                strokeWidth="1.5"
                                 stroke="currentColor"
                                 class="w-5 h-5"
                               >
@@ -125,7 +155,7 @@ const SavedQuestionTable = ({ savedQuestion }) => {
                             </button>
                           </Link>
                           <button
-                            onClick={handleDelete}
+                            onClick={() => handleDelete(question?._id)}
                             class="text-[#FC495F] transition-colors  duration-200
                             focus:outline-none"
                           >
@@ -133,7 +163,7 @@ const SavedQuestionTable = ({ savedQuestion }) => {
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
-                              stroke-width="1.5"
+                              strokeWidth="1.5"
                               stroke="currentColor"
                               class="w-5 h-5"
                             >
