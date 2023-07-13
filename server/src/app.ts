@@ -8,8 +8,13 @@ import { sendSuccessResponse } from './shared/customResponse'
 import routes from './app/routes/index'
 
 const app: Application = express()
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true,
+  optionSuccessStatus: 200,
+}
+app.use(cors(corsOptions))
 
-app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 

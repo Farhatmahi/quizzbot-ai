@@ -68,7 +68,7 @@ const getSingleSavedQuestion = (questionId) => __awaiter(void 0, void 0, void 0,
     // console.log(question)
     return question;
 });
-const updateSingleSavedQuestion = (userId, questionId, text) => __awaiter(void 0, void 0, void 0, function* () {
+const updateSingleSavedQuestion = (userId, questionId, title, generatedText) => __awaiter(void 0, void 0, void 0, function* () {
     const allSavedQuestion = yield all_saved_questions_model_1.default.findOne({
         user: userId,
     }).populate('saved_questions');
@@ -80,8 +80,10 @@ const updateSingleSavedQuestion = (userId, questionId, text) => __awaiter(void 0
         throw new Error('Question not found');
     }
     // console.log(savedQuestion)
-    savedQuestion.generatedText = text;
-    yield allSavedQuestion.save();
+    savedQuestion.title = title;
+    savedQuestion.generatedText = generatedText;
+    // await allSavedQuestion.save()
+    yield savedQuestion.save();
     return savedQuestion;
 });
 const deleteSingleSavedQuestion = (userId, questionId) => __awaiter(void 0, void 0, void 0, function* () {
