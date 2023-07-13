@@ -3,6 +3,7 @@ import axios from "axios";
 import SavedQuestionTable from "./SavedQuestionTable";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const SavedQuestion = () => {
   const [savedQuestion, setSavedQuestion] = useState([]);
@@ -20,11 +21,11 @@ const SavedQuestion = () => {
         );
         const data = await response.data;
         const userID = data?.data?._id;
-        console.log(userID);
+
         saveToDatabaseSavedQuestion(userID);
         setLoading(false);
       } catch (err) {
-        console.log(err);
+        toast.error(err.message);
         setLoading(false);
       }
     };
@@ -37,7 +38,7 @@ const SavedQuestion = () => {
         const data = await response.data;
         setSavedQuestion(data?.data?.saved_questions);
       } catch (err) {
-        console.log(err.message);
+        toast.error(err.message);
       }
     };
 

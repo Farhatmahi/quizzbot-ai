@@ -14,8 +14,6 @@ const SavedQuestionTable = ({ loading, savedQuestion }) => {
   const email = user?.email;
   const [saveModalQuestion, setSaveModalQuestion] = useState({});
 
-  console.log(savedQuestion);
-
   const openModal = (question) => {
     setModalOpen(true);
     setSaveModalQuestion(question);
@@ -23,11 +21,6 @@ const SavedQuestionTable = ({ loading, savedQuestion }) => {
 
   const closeModal = () => {
     setModalOpen(false);
-  };
-
-  const router = useRouter();
-  const handleClick = () => {
-    router.push("/home");
   };
 
   const handleDelete = async (id) => {
@@ -49,73 +42,71 @@ const SavedQuestionTable = ({ loading, savedQuestion }) => {
       const data = await response.data;
 
       toast.success(data.data);
-
-      // console.log(response);
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
     }
   };
 
   return (
-    <section class="px-6 mx-auto mt-16">
-      <div class="flex items-center gap-x-3 mx-8">
-        <h2 class="text-xl font-medium text-gray-800 ">All Documents</h2>
+    <section className="px-6 mx-auto mt-16">
+      <div className="flex items-center gap-x-3 mx-8">
+        <h2 className="text-xl font-medium text-gray-800 ">All Documents</h2>
 
         <IoDocumentsOutline className="text-[#FC495F]" />
       </div>
 
-      <div class="flex flex-col mt-6 mx-4">
-        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            <div class="overflow-hidden border-2 border-[#eee]  md:rounded-lg">
-              <table class="min-w-full divide-y divide-gray-200 ">
-                <thead class="bg-gradient-to-r from-[#FC495F] to-[#FFC371] bg-size-200  ">
+      <div className="flex flex-col mt-6 mx-4">
+        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+            <div className="overflow-hidden border-2 border-[#eee]  md:rounded-lg">
+              <table className="min-w-full divide-y divide-gray-200 ">
+                <thead className="bg-gradient-to-r from-[#FC495F] to-[#FFC371] bg-size-200  ">
                   <tr>
                     <th
                       scope="col"
-                      class="py-3.5 px-4 text-sm font-bold text-left rtl:text-right text-white
+                      className="py-3.5 px-4 text-sm font-bold text-left rtl:text-right text-white
                          "
                     >
-                      <div class="flex items-center gap-x-3">
+                      <div className="flex items-center gap-x-3">
                         <span>Document</span>
                       </div>
                     </th>
 
                     <th
                       scope="col"
-                      class="px-12 py-3.5 text-sm font-bold text-left rtl:text-right text-white "
+                      className="px-12 py-3.5 text-sm font-bold text-left rtl:text-right text-white "
                     >
-                      <button class="flex items-center gap-x-2">
+                      <button className="flex items-center gap-x-2">
                         <span>Content</span>
                       </button>
                     </th>
 
                     <th
                       scope="col"
-                      class="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-white "
+                      className="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-white "
                     >
-                      <button class="flex items-center gap-x-2">
+                      <button className="flex items-center gap-x-2">
                         <span>Date</span>
                       </button>
                     </th>
 
                     <th
                       scope="col"
-                      class="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-white "
+                      className="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-white "
                     >
                       Action
                     </th>
 
-                    <th scope="col" class="relative py-3.5 px-4">
-                      <span class="sr-only">Edit</span>
+                    <th scope="col" className="relative py-3.5 px-4">
+                      <span className="sr-only">Edit</span>
                     </th>
                   </tr>
                 </thead>
 
-                <tbody class="bg-white divide-y divide-gray-200  ">
+                <tbody className="bg-white divide-y divide-gray-200  ">
                   {savedQuestion?.map((question) => (
                     <tr>
-                      <td class="px-4 py-4 text-sm text-gray-900  whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm text-gray-900  whitespace-nowrap">
                         {question?.title}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-900">
@@ -125,17 +116,17 @@ const SavedQuestionTable = ({ loading, savedQuestion }) => {
                           </button>
                         </p>
                       </td>
-                      <td class="px-4 py-4 text-sm whitespace-nowrap">
-                        <div class="flex items-center gap-x-2">
+                      <td className="px-4 py-4 text-sm whitespace-nowrap">
+                        <div className="flex items-center gap-x-2">
                           {question?.createdAt}
                         </div>
                       </td>
-                      <td class="px-4 py-4 text-sm whitespace-nowrap">
-                        <div class="flex items-center gap-x-6">
+                      <td className="px-4 py-4 text-sm whitespace-nowrap">
+                        <div className="flex items-center gap-x-6">
                           <Link href="/saved-questions/1">
                             <button
                               //   onClick={handleClick}
-                              class="text-[#f9a544] transition-colors 
+                              className="text-[#f9a544] transition-colors 
                           duration-200  focus:outline-none mt-1"
                             >
                               <svg
@@ -144,7 +135,7 @@ const SavedQuestionTable = ({ loading, savedQuestion }) => {
                                 viewBox="0 0 24 24"
                                 strokeWidth="1.5"
                                 stroke="currentColor"
-                                class="w-5 h-5"
+                                className="w-5 h-5"
                               >
                                 <path
                                   stroke-linecap="round"
@@ -156,7 +147,7 @@ const SavedQuestionTable = ({ loading, savedQuestion }) => {
                           </Link>
                           <button
                             onClick={() => handleDelete(question?._id)}
-                            class="text-[#FC495F] transition-colors  duration-200
+                            className="text-[#FC495F] transition-colors  duration-200
                             focus:outline-none"
                           >
                             <svg
@@ -165,7 +156,7 @@ const SavedQuestionTable = ({ loading, savedQuestion }) => {
                               viewBox="0 0 24 24"
                               strokeWidth="1.5"
                               stroke="currentColor"
-                              class="w-5 h-5"
+                              className="w-5 h-5"
                             >
                               <path
                                 stroke-linecap="round"

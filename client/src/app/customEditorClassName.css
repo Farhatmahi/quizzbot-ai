@@ -1,7 +1,7 @@
 customToolbarClassName,
 .customEditorClassName {
   border: 2px solid #eee;
-  min-height: 400px;
+  height: 400px;
   padding: 5px;
   border-radius: 15px;
 }

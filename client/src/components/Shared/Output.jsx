@@ -7,7 +7,6 @@ import { AiOutlineSave } from "react-icons/ai";
 import { ContentState, EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "../../app/customEditorClassName.css";
-import ChatLoader from "../ChatgptLoader/ChatLoader";
 import "../Shared/Output.module.css";
 import axios from "axios";
 import { AuthContext } from "@/context/AuthProvider";
@@ -70,7 +69,7 @@ const Output = ({ generatedResponse, chatGptLoading, saveQuestion }) => {
       const userID = data?.data?._id;
       saveToDatabaseSavedQuestion(question, userID);
     } catch (err) {
-      console.log(err);
+      toast.error(err.message);
     }
   };
 
@@ -87,7 +86,7 @@ const Output = ({ generatedResponse, chatGptLoading, saveQuestion }) => {
         }
       );
       const data = await response.data;
-      console.log(data);
+
       toast.success(data.message);
     } catch (err) {
       toast.error(err.message);
