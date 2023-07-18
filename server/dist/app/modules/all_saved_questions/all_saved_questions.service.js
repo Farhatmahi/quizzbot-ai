@@ -79,10 +79,8 @@ const updateSingleSavedQuestion = (userId, questionId, title, generatedText) => 
     if (!savedQuestion) {
         throw new Error('Question not found');
     }
-    // console.log(savedQuestion)
     savedQuestion.title = title;
     savedQuestion.generatedText = generatedText;
-    // await allSavedQuestion.save()
     yield savedQuestion.save();
     return savedQuestion;
 });
