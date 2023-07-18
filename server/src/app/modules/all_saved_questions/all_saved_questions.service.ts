@@ -86,18 +86,15 @@ const updateSingleSavedQuestion = async (
 
   const savedQuestion = allSavedQuestion.saved_questions.find((question: any) =>
     question._id.equals(new mongoose.Types.ObjectId(questionId))
-  )
+  ) as ISingleSavedQuestion
 
   if (!savedQuestion) {
     throw new Error('Question not found')
   }
 
-  // console.log(savedQuestion)
-
   savedQuestion.title = title
   savedQuestion.generatedText = generatedText
-  // await allSavedQuestion.save()
-  await savedQuestion.save() 
+  await savedQuestion.save()
 
   return savedQuestion
 }
