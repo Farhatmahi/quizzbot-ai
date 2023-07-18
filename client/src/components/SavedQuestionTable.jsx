@@ -25,7 +25,7 @@ const SavedQuestionTable = ({ loading, savedQuestion }) => {
 
   const handleDelete = async (id) => {
     const response = await axios.post(
-      "https://ai-quizzbot-farhatmahi.vercel.app/api/v1/users/get-user",
+      "http://localhost:4000/api/v1/users/get-user",
       { email }
     );
 
@@ -36,7 +36,7 @@ const SavedQuestionTable = ({ loading, savedQuestion }) => {
 
     try {
       const response = await axios.delete(
-        `https://ai-quizzbot-farhatmahi.vercel.app/api/v1/all-saved-questions/${id}`,
+        `http://localhost:4000/api/v1/all-saved-questions/${id}`,
         { data: userId }
       );
       const data = await response.data;

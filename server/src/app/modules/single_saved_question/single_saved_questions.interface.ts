@@ -3,13 +3,12 @@ export interface ISingleSavedQuestion {
   paste_text: string
   language: ILanguage
   difficulty: IDifficulty
-  number_of_sets: INumberOfSets
   title: string
   generatedText: string
 }
 
 export type IDifficulty = 'Easy' | 'Average' | 'Above Average' | 'Difficult'
-export type INumberOfSets = '1' | '2' | '3'
+
 export type IHowManyQuestions =
   | '1'
   | '2'

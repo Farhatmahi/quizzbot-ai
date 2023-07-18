@@ -15,9 +15,7 @@ const createSavedQuestionZodSchema = z.object({
       difficulty: z.string({
         required_error: 'Difficulty is required',
       }),
-      number_of_sets: z.string({
-        required_error: 'Number of sets is required',
-      }),
+      number_of_sets: z.string().optional(),
       title: z.string({
         required_error: 'Title is required',
       }),
