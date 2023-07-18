@@ -81,7 +81,7 @@ const Home = () => {
 
     const data = { prompt };
     axios
-      .post("https://ai-quizzbot-farhatmahi.vercel.app/api/v1/generate", data)
+      .post("http://localhost:4000/api/v1/generate", data)
       .then((res) => {
         setGeneratedResponse(res.data.data);
         const saveQuestionData = {

@@ -30,11 +30,6 @@ const SingleSavedQuestionSchema = new Schema<ISingleSavedQuestion>(
       required: true,
       enum: difficulty,
     },
-    number_of_sets: {
-      type: String,
-      required: true,
-      enum: numberOfSets,
-    },
     title: { type: String },
     generatedText: {
       type: String,
@@ -51,4 +46,3 @@ const SingleSavedQuestion = model<ISingleSavedQuestion>(
 )
 
 export default SingleSavedQuestion
-
