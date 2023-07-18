@@ -3,12 +3,12 @@ import { IUser } from './user.interface'
 import { User } from './user.model'
 import ApiError from '../../../errors/ApiError'
 
-const createUser = async (user: IUser): Promise<IUser | null> => {
+const createUser = async (user: IUser): Promise<IUser | null | undefined> => {
   const { email, password } = user
 
   const existingUser = await User.findOne({ email })
   if (existingUser) {
-    throw new ApiError(400, 'Email already exists')
+    return;
   }
 
   const salt = await bcrypt.genSalt()
