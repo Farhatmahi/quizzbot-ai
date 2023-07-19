@@ -9,7 +9,7 @@ import routes from './app/routes/index'
 
 const app: Application = express()
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'https://ai-quizzbot.netlify.app/',
   credentials: true,
   optionSuccessStatus: 200,
 }
