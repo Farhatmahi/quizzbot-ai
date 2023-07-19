@@ -9,7 +9,7 @@ import routes from './app/routes/index'
 
 const app: Application = express()
 const corsOptions = {
-  origin: 'https://ai-quizzbot.netlify.app',
+  origin: 'https://ai-quizbot.netlify.app',
   credentials: true,
   optionSuccessStatus: 200,
 }
