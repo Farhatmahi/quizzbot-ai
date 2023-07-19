@@ -5,15 +5,13 @@ import { ISingleSavedQuestion } from './single_saved_questions.interface'
 import {
   difficulty,
   howManyQuestions,
-  languages,
-  numberOfSets,
+  languages
 } from './single_saved_question.constant'
 
 const SingleSavedQuestionSchema = new Schema<ISingleSavedQuestion>(
   {
     how_many_questions: {
       type: String,
-      required: true,
       enum: howManyQuestions,
     },
     paste_text: {
